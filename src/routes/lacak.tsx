@@ -1,6 +1,6 @@
 import { usePreferences } from '@/components/preferences';
 import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Search,
   CheckCircle2,
@@ -11,6 +11,7 @@ import {
   AlertCircle,
   RefreshCw,
   Wallet,
+  XCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { PageHeading } from '@/components/site';
@@ -26,15 +27,42 @@ export const Route = createFileRoute('/lacak')({
   component: LacakPage,
 });
 
+type Transaction = {
+  id: string;
+  customerName: string;
+  whatsapp: string;
+  service: string;
+  amountUsd: number;
+  totalIdr: string;
+  targetAccount: string;
+  status: 'Menunggu Saldo' | 'Validasi Mutasi' | 'Selesai' | 'Dibatalkan';
+  createdAt: string;
+};
+
 function LacakPage() {
   const { tr } = usePreferences();
   const [orderId, setOrderId] = useState('');
-  const [searchedId, setSearchedId] = useState<string | null>(null);
+  const [searchedData, setSearchedData] = useState<Transaction | null>(null);
+  const [notFound, setNotFound] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!orderId.trim()) return;
-    setSearchedId(orderId.trim().toUpperCase());
+    const query = orderId.trim().toUpperCase();
+    if (!query) return;
+
+    try {
+      const saved: Transaction[] = JSON.parse(localStorage.getItem('tc_all_transactions') || '[]');
+      const found = saved.find((t) => t.id.toUpperCase() === query);
+      if (found) {
+        setSearchedData(found);
+        setNotFound(false);
+      } else {
+        setSearchedData(null);
+        setNotFound(true);
+      }
+    } catch {
+      setNotFound(true);
+    }
   };
 
   return (
@@ -45,7 +73,6 @@ function LacakPage() {
         description={tr('Masukkan ID transaksi yang Anda dapatkan saat mengajukan pesanan via kalkulator atau admin.')}
       />
 
-      {/* Form Input Pencarian */}
       <div style={{ maxWidth: '600px', margin: '0 auto 40px auto' }}>
         <form
           onSubmit={handleSearch}
@@ -60,29 +87,14 @@ function LacakPage() {
           }}
         >
           <div style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center' }}>
-            <Search
-              size={18}
-              style={{
-                position: 'absolute',
-                left: '12px',
-                color: 'var(--muted-foreground)',
-              }}
-            />
+            <Search size={18} style={{ position: 'absolute', left: '12px', color: 'var(--muted-foreground)' }} />
             <input
               type="text"
               required
               value={orderId}
               onChange={(e) => setOrderId(e.target.value)}
-              placeholder="Contoh: DC-ML9X8A..."
-              style={{
-                width: '100%',
-                border: 'none',
-                paddingLeft: '38px',
-                fontSize: '14px',
-                fontWeight: 600,
-                outline: 'none',
-                backgroundColor: 'transparent',
-              }}
+              placeholder="Masukkan ID Anda (Contoh: TC-12345)"
+              style={{ width: '100%', border: 'none', paddingLeft: '38px', fontSize: '14px', fontWeight: 600, outline: 'none', backgroundColor: 'transparent' }}
             />
           </div>
           <Button type="submit" size="lg" style={{ borderRadius: '8px', fontWeight: 700 }}>
@@ -91,43 +103,38 @@ function LacakPage() {
         </form>
       </div>
 
-      {/* Hasil Pelacakan Interaktif */}
-      {searchedId && (
-        <div
-          style={{
-            maxWidth: '680px',
-            margin: '0 auto',
-            backgroundColor: 'var(--card)',
-            border: '1px solid var(--border)',
-            borderRadius: '16px',
-            padding: '30px',
-            boxShadow: 'var(--shadow)',
-          }}
-        >
-          {/* Header Status */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '12px',
-              paddingBottom: '20px',
-              borderBottom: '1px solid var(--border)',
-            }}
-          >
+      {notFound && (
+        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', padding: '30px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)' }}>
+          <AlertCircle size={32} style={{ color: '#ef4444', margin: '0 auto 10px' }} />
+          <h3 style={{ fontSize: '16px', fontWeight: 700 }}>ID Transaksi Tidak Ditemukan</h3>
+          <p style={{ fontSize: '12px', color: 'var(--muted-foreground)', marginTop: '4px' }}>
+            Pastikan Anda memasukkan kode ID dengan benar atau hubungi admin jika baru saja mengajukan pesanan.
+          </p>
+        </div>
+      )}
+
+      {searchedData && (
+        <div style={{ maxWidth: '680px', margin: '0 auto', backgroundColor: 'var(--card)', border: '1px solid var(--border)', borderRadius: '16px', padding: '30px', boxShadow: 'var(--shadow)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', paddingBottom: '20px', borderBottom: '1px solid var(--border)' }}>
             <div>
-              <span style={{ fontSize: '11px', color: 'var(--muted-foreground)', fontWeight: 600 }}>
-                {tr('ID TRANSAKSI')}
-              </span>
-              <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--primary)', margin: '4px 0 0 0' }}>
-                {searchedId}
-              </h3>
+              <span style={{ fontSize: '11px', color: 'var(--muted-foreground)', fontWeight: 600 }}>ID TRANSAKSI RESMI</span>
+              <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--primary)', margin: '4px 0 0 0' }}>{searchedData.id}</h3>
+              <small style={{ color: 'var(--muted-foreground)' }}>{searchedData.createdAt}</small>
             </div>
             <div
               style={{
-                backgroundColor: 'rgba(5, 150, 105, 0.12)',
-                color: '#059669',
+                backgroundColor:
+                  searchedData.status === 'Selesai'
+                    ? 'rgba(5, 150, 105, 0.15)'
+                    : searchedData.status === 'Dibatalkan'
+                    ? 'rgba(239, 68, 68, 0.15)'
+                    : 'rgba(2, 132, 199, 0.15)',
+                color:
+                  searchedData.status === 'Selesai'
+                    ? '#059669'
+                    : searchedData.status === 'Dibatalkan'
+                    ? '#ef4444'
+                    : '#0284c7',
                 padding: '6px 14px',
                 borderRadius: '9999px',
                 fontSize: '11px',
@@ -137,152 +144,57 @@ function LacakPage() {
                 gap: '6px',
               }}
             >
-              <RefreshCw size={13} /> {tr('DALAM PROSES / VALIDASI')}
+              {searchedData.status === 'Selesai' ? <CheckCircle2 size={14} /> : searchedData.status === 'Dibatalkan' ? <XCircle size={14} /> : <RefreshCw size={14} />}
+              {searchedData.status.toUpperCase()}
             </div>
           </div>
 
-          {/* Timeline Visual 4 Tahap */}
-          <div style={{ margin: '30px 0' }}>
-            <h4 style={{ fontSize: '13px', fontWeight: 700, marginBottom: '20px' }}>
-              {tr('Alur Transaksi Anda:')}
-            </h4>
+          <div style={{ margin: '20px 0', padding: '16px', backgroundColor: 'var(--accent)', borderRadius: '8px', fontSize: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px' }}>
+            <div>Layanan: <strong>{searchedData.service}</strong></div>
+            <div>Nominal: <strong>${searchedData.amountUsd} USD</strong> (<strong>{searchedData.totalIdr}</strong>)</div>
+            <div>Tujuan Pencairan: <strong>{searchedData.targetAccount}</strong></div>
+          </div>
 
+          <div style={{ margin: '30px 0' }}>
+            <h4 style={{ fontSize: '13px', fontWeight: 700, marginBottom: '20px' }}>Alur Transaksi Anda:</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-              {/* Tahap 1: Pesanan Dibuat */}
               <div style={{ display: 'flex', gap: '15px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      backgroundColor: '#059669',
-                      color: '#fff',
-                      display: 'grid',
-                      placeItems: 'center',
-                    }}
-                  >
-                    <CheckCircle2 size={16} />
-                  </div>
+                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', backgroundColor: '#059669', color: '#fff', display: 'grid', placeItems: 'center' }}><CheckCircle2 size={16} /></div>
                   <div style={{ width: '2px', height: '35px', backgroundColor: '#059669', marginTop: '4px' }} />
                 </div>
-                <div>
-                  <strong style={{ fontSize: '13px' }}>{tr('Pesanan Diterima Sistem')}</strong>
-                  <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>
-                    {tr('ID transaksi tercatat, menunggu validasi nominal.')}
-                  </p>
-                </div>
+                <div><strong style={{ fontSize: '13px' }}>Pesanan Terdaftar di Sistem</strong><p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>ID resmi terkunci dan tersimpan di database.</p></div>
               </div>
 
-              {/* Tahap 2: Pengiriman Saldo PayPal */}
               <div style={{ display: 'flex', gap: '15px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--primary)',
-                      color: '#fff',
-                      display: 'grid',
-                      placeItems: 'center',
-                    }}
-                  >
-                    <Clock size={16} />
-                  </div>
-                  <div style={{ width: '2px', height: '35px', backgroundColor: 'var(--border)', marginTop: '4px' }} />
+                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', backgroundColor: searchedData.status !== 'Menunggu Saldo' ? '#059669' : 'var(--primary)', color: '#fff', display: 'grid', placeItems: 'center' }}><Clock size={16} /></div>
+                  <div style={{ width: '2px', height: '35px', backgroundColor: searchedData.status === 'Validasi Mutasi' || searchedData.status === 'Selesai' ? '#059669' : 'var(--border)', marginTop: '4px' }} />
                 </div>
-                <div>
-                  <strong style={{ fontSize: '13px', color: 'var(--primary)' }}>
-                    {tr('Pengecekan Saldo PayPal')}
-                  </strong>
-                  <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>
-                    {tr('Admin sedang memeriksa dana masuk pada akun resmi Done Cogel.')}
-                  </p>
-                </div>
+                <div><strong style={{ fontSize: '13px' }}>Pengecekan Saldo Masuk</strong><p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>Admin memverifikasi dana PayPal yang dikirimkan.</p></div>
               </div>
 
-              {/* Tahap 3: Validasi Akun */}
               <div style={{ display: 'flex', gap: '15px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--muted)',
-                      color: 'var(--muted-foreground)',
-                      display: 'grid',
-                      placeItems: 'center',
-                    }}
-                  >
-                    <ShieldCheck size={16} />
-                  </div>
-                  <div style={{ width: '2px', height: '35px', backgroundColor: 'var(--border)', marginTop: '4px' }} />
+                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', backgroundColor: searchedData.status === 'Selesai' ? '#059669' : searchedData.status === 'Validasi Mutasi' ? 'var(--primary)' : 'var(--muted)', color: searchedData.status === 'Selesai' || searchedData.status === 'Validasi Mutasi' ? '#fff' : 'var(--muted-foreground)', display: 'grid', placeItems: 'center' }}><ShieldCheck size={16} /></div>
+                  <div style={{ width: '2px', height: '35px', backgroundColor: searchedData.status === 'Selesai' ? '#059669' : 'var(--border)', marginTop: '4px' }} />
                 </div>
-                <div>
-                  <strong style={{ fontSize: '13px', color: 'var(--muted-foreground)' }}>
-                    {tr('Verifikasi Sumber Dana (Clean Funds)')}
-                  </strong>
-                  <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>
-                    {tr('Pemeriksaan keamanan anti-hold dan anti-dispute.')}
-                  </p>
-                </div>
+                <div><strong style={{ fontSize: '13px' }}>Validasi Sumber Dana</strong><p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>Pemeriksaan keamanan anti-hold & anti-fraud.</p></div>
               </div>
 
-              {/* Tahap 4: Transfer ke Rekening/E-Wallet */}
               <div style={{ display: 'flex', gap: '15px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--muted)',
-                      color: 'var(--muted-foreground)',
-                      display: 'grid',
-                      placeItems: 'center',
-                    }}
-                  >
-                    <Wallet size={16} />
-                  </div>
+                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', backgroundColor: searchedData.status === 'Selesai' ? '#059669' : 'var(--muted)', color: searchedData.status === 'Selesai' ? '#fff' : 'var(--muted-foreground)', display: 'grid', placeItems: 'center' }}><Wallet size={16} /></div>
                 </div>
-                <div>
-                  <strong style={{ fontSize: '13px', color: 'var(--muted-foreground)' }}>
-                    {tr('Pencairan Rupiah ke Rekening / E-Wallet')}
-                  </strong>
-                  <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>
-                    {tr('Dana otomatis dikirim (BCA, Mandiri, DANA, OVO, GoPay).')}
-                  </p>
-                </div>
+                <div><strong style={{ fontSize: '13px' }}>Pencairan Rupiah Selesai</strong><p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>Dana rupiah berhasil ditransfer ke rekening / e-wallet tujuan.</p></div>
               </div>
             </div>
           </div>
 
-          {/* Kotak Bantuan Cepat WhatsApp */}
-          <div
-            style={{
-              backgroundColor: 'var(--accent)',
-              borderRadius: '12px',
-              padding: '20px',
-              marginTop: '25px',
-              border: '1px solid var(--border)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-              <AlertCircle size={18} className="text-primary" />
-              <strong style={{ fontSize: '12px' }}>{tr('Butuh konfirmasi instan dari Admin?')}</strong>
-            </div>
-            <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '0 0 14px 0' }}>
-              {tr('Hubungi admin prioritas untuk mempercepat proses verifikasi dan pencairan pesanan Anda.')}
-            </p>
+          <div style={{ backgroundColor: 'var(--accent)', borderRadius: '12px', padding: '16px', border: '1px solid var(--border)' }}>
             <Button asChild size="sm" style={{ fontWeight: 700 }}>
-              <a
-                href={whatsappUrl(`Halo Admin TransferCepat, saya ingin cek status transaksi ID: ${searchedId}`)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle size={14} /> {tr('Tanya Admin via WhatsApp')} <ArrowRight size={14} />
+              <a href={whatsappUrl(`Halo Admin TransferCepat, saya ingin menanyakan status transaksi ID: ${searchedData.id}`)} target="_blank" rel="noopener noreferrer">
+                <MessageCircle size={14} /> Hubungi Admin via WhatsApp <ArrowRight size={14} />
               </a>
             </Button>
           </div>
@@ -290,4 +202,4 @@ function LacakPage() {
       )}
     </main>
   );
-      }
+}
