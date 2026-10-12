@@ -61,8 +61,8 @@
       "capability": "Google Ads",
       "source": "AW-18275591345",
       "outcome": "Preserve tag",
-      "status": "implemented",
-      "next_action": "Tag load verification pending"
+      "status": "verified",
+      "next_action": "Live conversion attribution remains unverified until publish"
     },
     {
       "capability": "Public endpoints, callbacks, webhooks, schedules",
