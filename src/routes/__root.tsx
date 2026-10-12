@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader, SiteFooter } from "../components/site";
 import { Analytics } from "../components/analytics";
+import { PreferencesProvider } from "../components/preferences";
 
 function NotFoundComponent() {
   return (
@@ -22,14 +23,14 @@ function NotFoundComponent() {
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          Halaman yang Anda cari tidak ditemukan.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Ke Beranda
           </Link>
         </div>
       </div>
@@ -48,10 +49,10 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Terjadi kendala saat memuat halaman
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Silakan coba muat ulang halaman.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -61,13 +62,13 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Muat Ulang
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Ke Beranda
           </a>
         </div>
       </div>
@@ -80,21 +81,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Done Cogel — Solusi PayPal" },
-      { name: "description", content: "Layanan PayPal dan pembayaran digital Done Cogel." },
-      { name: "author", content: "Done Cogel" },
-      { property: "og:title", content: "Done Cogel — Solusi PayPal" },
-      { property: "og:description", content: "Layanan PayPal dan pembayaran digital Done Cogel." },
+      { title: "TransferCepat — Jasa Convert Saldo PayPal & Pembayaran Online Terpercaya" },
+      {
+        name: "description",
+        content:
+          "Jasa convert saldo PayPal ke DANA, BCA, OVO, Mandiri tercepat 5-15 menit. Layanan pembayaran marketplace internasional terpercaya sejak 2018.",
+      },
+      {
+        name: "keywords",
+        content:
+          "convert paypal, jasa convert paypal, jual saldo paypal, paypal ke dana, paypal ke bca, jasa bayar paypal, transfercepat",
+      },
+      { property: "og:site_name", content: "TransferCepat" },
+      { property: "og:title", content: "TransferCepat — Solusi PayPal & Pembayaran Digital" },
+      {
+        property: "og:description",
+        content:
+          "Convert saldo PayPal ke bank & e-wallet Indonesia tanpa ribet. Proses kilat rate terbaik.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://transfercepat.com" },
+      { property: "og:image", content: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&q=80" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -122,11 +138,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <SiteHeader />
-      <Analytics />
-      <Outlet />
-      <SiteFooter />
+      <PreferencesProvider>
+        <SiteHeader />
+        <Analytics />
+        <Outlet />
+        <SiteFooter />
+      </PreferencesProvider>
     </QueryClientProvider>
   );
 }
