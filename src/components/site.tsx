@@ -1,7 +1,22 @@
 import { PreferenceControls, usePreferences } from '@/components/preferences';
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
-import { ArrowUpRight, ArrowRight, Menu, X, Send, MessageCircle, ChevronDown, ArrowDownUp, ShieldCheck, UserRoundPlus, ShoppingBag, Wrench, Mail, Clock } from 'lucide-react';
+import {
+  ArrowUpRight,
+  ArrowRight,
+  Menu,
+  X,
+  Send,
+  MessageCircle,
+  ChevronDown,
+  ArrowDownUp,
+  ShieldCheck,
+  UserRoundPlus,
+  ShoppingBag,
+  Wrench,
+  Mail,
+  Clock,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TELEGRAM_URL, whatsappUrl } from '@/lib/paypal';
 
@@ -25,6 +40,7 @@ export function SiteHeader() {
           <span>done<span className="text-primary">cogel</span><small>PAYPAL & DIGITAL PAYMENT</small></span>
         </Link>
         
+        {/* Navigasi Desktop */}
         <nav className="desktop-nav" aria-label={tr("Navigasi utama")}>
           <Link to="/" activeProps={{ className: 'nav-active' }} activeOptions={{exact:true}}>{tr("Beranda")}</Link>
           <div className="nav-dropdown">
@@ -37,13 +53,14 @@ export function SiteHeader() {
               </div>
             )}
           </div>
-          <Link to="/blog">{tr("Blog Edukasi")}</Link><Link to="/lacak">{tr("Lacak Transaksi")}</Link>
+          <Link to="/lacak">{tr("Lacak Transaksi")}</Link>
+          <Link to="/blog">{tr("Blog Edukasi")}</Link>
           <Link to="/panduan">{tr("Panduan")}</Link>
           <Link to="/tentang">{tr("Tentang Kami")}</Link>
           <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">{tr("Testimoni")} <ArrowUpRight size={13}/></a>
         </nav>
 
-        {/* Kontrol Bahasa dan Mode Gelap Sejajar */}
+        {/* Kontrol Bahasa dan Mode Gelap */}
         <PreferenceControls/>
 
         <Button asChild className="header-contact">
@@ -57,9 +74,11 @@ export function SiteHeader() {
         </Button>
       </div>
 
+      {/* Navigasi Menu HP (Mobile) */}
       {open && (
         <nav className="mobile-nav" aria-label={tr("Navigasi seluler")}>
           <Link to="/" onClick={() => setOpen(false)}>{tr("Beranda")}</Link>
+          <Link to="/lacak" onClick={() => setOpen(false)} style={{ color: 'var(--primary)', fontWeight: 700 }}>🔍 {tr("Lacak Transaksi")}</Link>
           {services.slice(1).map(s => <Link key={s.title} to={s.to} onClick={() => setOpen(false)}>{s.title}</Link>)}
           <Link to="/blog" onClick={() => setOpen(false)}>{tr("Blog Edukasi")}</Link>
           <Link to="/panduan" onClick={() => setOpen(false)}>{tr("Panduan")}</Link>
@@ -147,6 +166,7 @@ export function SiteFooter() {
         </div>
         <div>
           <h4>{tr("Informasi")}</h4>
+          <Link to="/lacak">{tr("Lacak Transaksi")}</Link>
           <Link to="/tentang">{tr("Tentang Kami")}</Link>
           <Link to="/panduan">{tr("Master Guide")}</Link>
           <Link to="/blog">{tr("Blog Edukasi")}</Link>
