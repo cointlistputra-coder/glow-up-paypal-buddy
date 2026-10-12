@@ -15,3 +15,5 @@
 - Treat imported HTML as untrusted content; never copy embedded authentication credentials or execute its scripts, because client-side authorization is unsafe.
 - Preserve imported articles as structured content separately from presentation so future design changes do not lose the original material.
 - This refresh is frontend-only; do not imply that local member authentication or transaction records have been migrated until a secure Cloud migration is verified.
+- Keep editorial articles in a typed bilingual data module with stable slugs and individual leaf routes so both languages remain directly discoverable.
+- Use a shared React preferences context for UI translations and themes; initialize browser preferences after hydration and retain browser-local display choices only.

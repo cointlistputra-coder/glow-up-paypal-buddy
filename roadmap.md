@@ -3,4 +3,7 @@
 - [x] Add PayPal account creation explanation and inquiry.
 - [x] Replace Facebook testimonials with Telegram.
 - [x] Verify pages, calculator, links, and mobile layout.
+- [ ] Publish 15 long bilingual educational articles on individual readable pages.
+- [ ] Add Indonesian/English choices throughout the website and light/dark themes.
+- [ ] Add accessible page animations and verify reading, themes, languages and calculator.
 - [ ] Existing member/admin data, dynamic settings, email and report uploads: blocked by missing exports and a separate secure backend migration.
