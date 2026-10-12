@@ -1,0 +1,82 @@
+{
+  "source": "code-archive",
+  "capabilities": [
+    {
+      "capability": "Website content and navigation",
+      "source": "index_8_22.html",
+      "outcome": "Recreate in TanStack",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "PayPal calculator and WhatsApp order",
+      "source": "Inline calculator",
+      "outcome": "Preserve original tier rates and message drafting",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Account creation service and Telegram testimonials",
+      "source": "User request",
+      "outcome": "Add service and replace Facebook links",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "Database schema and records",
+      "source": "Firebase Realtime Database",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Existing Firebase export required; this request only changes presentation"
+    },
+    {
+      "capability": "Auth identities and authorization",
+      "source": "Inline client authentication and administrator password",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Replace unsafe client authentication with verified Cloud authentication in a separate backend migration; never copy credentials"
+    },
+    {
+      "capability": "Dynamic rate synchronization",
+      "source": "Firebase settings",
+      "outcome": "Preserve supplied default rates for preview",
+      "status": "pending",
+      "next_action": "Connect migrated settings after backend migration"
+    },
+    {
+      "capability": "Email and report uploads",
+      "source": "EmailJS and Telegram bot",
+      "outcome": "Retain providers; use WhatsApp support link in preview",
+      "status": "pending",
+      "next_action": "Secure server integration and provider verification required"
+    },
+    {
+      "capability": "Assets",
+      "source": "logo.png and style.css absent from upload",
+      "outcome": "Recreate presentation",
+      "status": "pending",
+      "next_action": "Original logo asset required for exact restoration"
+    },
+    {
+      "capability": "Google Ads",
+      "source": "AW-18275591345",
+      "outcome": "Preserve tag",
+      "status": "verified",
+      "next_action": "Live conversion attribution remains unverified until publish"
+    },
+    {
+      "capability": "Public endpoints, callbacks, webhooks, schedules",
+      "source": "Inline source inspection",
+      "outcome": "No incoming endpoints or schedules detected",
+      "status": "not_applicable",
+      "next_action": null
+    },
+    {
+      "capability": "Cutover and live verification",
+      "source": "transfercepat.com",
+      "outcome": "Keep existing site unchanged",
+      "status": "pending",
+      "next_action": "User approval and publish required"
+    }
+  ]
+}

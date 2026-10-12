@@ -1,0 +1,241 @@
+{
+  "blogsData": [
+    {
+      "t": "Cara Menghindari Limit Paypal",
+      "d": "Pelajari cara menjaga kesehatan akun Anda dari deteksi robotik sistem keamanan PayPal.",
+      "full": "Untuk menghindari pembatasan atau *limit* pada akun PayPal Anda, langkah paling krusial yang harus dilakukan adalah menyelesaikan seluruh proses verifikasi identitas (**Know Your Customer/KYC**) secara penuh dengan menautkan kartu debit/kredit yang valid, menghubungkan rekening bank lokal, serta mengunggah dokumen resmi seperti KTP atau paspor agar sistem memercayai legalitas akun Anda. Selain itu, Anda wajib menjaga pola transaksi yang sehat dengan menghindari lonjakan drastis pada volume atau nominal dana yang masuk maupun keluar secara mendadak—lakukan eskalasi arus kas secara bertahap terutama jika Anda sering menerima pembayaran dari luar negeri—serta hindari mengakses akun menggunakan **VPN** atau berpindah-pindah perangkat dalam waktu singkat karena sistem keamanan PayPal sangat sensitif terhadap perubahan IP yang mencurigakan. Terakhir, selalu lengkapi transaksi bisnis dengan **invoice** atau dokumen pendukung yang jelas, segera isi informasi pengiriman atau nomor pelacakan jika ada, selesaikan setiap keluhan atau sengketa (*dispute*) pelanggan secepat mungkin, dan pastikan data profil PayPal Anda (termasuk nama legal) sepenuhnya cocok dengan data pada rekening bank penarikan demi mencegah sistem otomatis menyalakan alarm bahaya yang berujung pada pembekuan akun secara sepihak."
+    },
+    {
+      "t": "Cara Transfer Saldo PayPal ke Bank Lokal Tanpa Gagal",
+      "d": "Langkah-langkah teknis menghubungkan rekening bank nasional Indonesia ke akun PayPal.",
+      "full": "Pastikan nama di akun PayPal Anda sama persis dengan nama di buku tabungan. Gunakan kode SWIFT yang tepat (Contoh: BCA - CENAIDJA). Untuk melakukan penarikan dana dari PayPal ke rekening bank lokal tanpa risiko gagal, hal terpenting yang wajib Anda pastikan adalah **nama yang terdaftar di akun PayPal harus sama persis dengan nama pada buku tabungan** Anda guna menghindari penolakan dari sistem bank yang berujung pada biaya retur. Setelah rekening bank terhubung dengan benar menggunakan sandi bank 7 digit yang sesuai, pastikan saldo Anda memenuhi batas minimum penarikan, lalu lakukan proses *withdraw* melalui koneksi internet pribadi tanpa menggunakan VPN pada hari kerja (Senin-Kamis) agar proses kliring bank berjalan lebih cepat dan lancar. Selain itu, perhatikan juga nominal penarikan Anda untuk meminimalkan potongan—biasanya penarikan di atas Rp1.500.000 bebas biaya admin—serta hindari mengubah informasi profil atau kata sandi sesaat sebelum menarik dana agar sistem keamanan PayPal tidak mencurigainya sebagai aktivitas peretasan yang dapat menunda pencairan dana Anda."
+    },
+    {
+      "t": "Mengenal Perbedaan Saldo G&S dan F&F",
+      "d": "Mana yang lebih aman untuk transaksi bisnis Anda? Ketahui risikonya sekarang.",
+      "full": "Goods and Services (G&S) memberikan proteksi pembeli namun dikenakan potongan biaya. Friends and Family (F&F) bebas biaya namun tidak memiliki proteksi jika barang tidak sampai. Untuk transaksi profesional atau convert, sangat disarankan menggunakan kategori G&S agar kedua belah pihak terlindungi oleh sistem resolusi."
+    },
+    {
+      "t": "Tips Menang Dispute Sengketa Dana",
+      "d": "Cara memberikan bukti yang valid saat menghadapi klien atau pembeli yang curang.",
+      "full": "Jika ada klaim sengketa, segera unggah bukti pengiriman (Tracking Number) atau bukti serah terima jasa digital (Screenshot chat/email). PayPal akan memediasi kasus tersebut selama 20 hari. Kejujuran dan keakuratan bukti dokumen adalah kunci utama memenangkan sengketa di Resolution Center."
+    },
+    {
+      "t": "Verifikasi PayPal Tanpa Kartu Kredit Fisik",
+      "d": "Gunakan kartu debit bank digital seperti Bank Jago atau Jenius untuk verifikasi.",
+      "full": "Kini Anda tidak perlu lagi kartu kredit bank konvensional. Cukup gunakan fitur kartu debit virtual (VCC) dari bank digital modern Indonesia. Pastikan fitur transaksi internasional sudah aktif dan saldo di kartu mencukupi (sekitar $2) untuk proses penarikan saldo uji coba oleh PayPal."
+    },
+    {
+      "t": "Mengapa Saldo Anda Tertahan (Hold) 21 Hari?",
+      "d": "Penjelasan lengkap mengenai kebijakan keamanan bagi akun baru atau seller baru.",
+      "full": "Dana yang masuk sebagai G&S sering ditahan selama 21 hari oleh PayPal untuk menjamin pembeli menerima barangnya. Untuk mempercepat pencairan menjadi 'Available', Anda bisa memasukkan informasi pelacakan atau meminta pengirim menekan tombol 'Confirm Receipt' setelah 48 jam saldo diterima."
+    },
+    {
+      "t": "Update Rate Convert Done Cogel Terbaru",
+      "d": "Analisis pergerakan nilai tukar Dollar ke Rupiah dan waktu terbaik untuk tukar.",
+      "full": "Nilai tukar PayPal selalu berubah mengikuti pasar valuta asing global. Kami di Done Cogel selalu memberikan rate tertinggi setiap harinya. Pantau terus dashboard kami untuk mendapatkan rate premium saat nilai dollar sedang menguat terhadap rupiah guna memaksimalkan keuntungan Anda."
+    },
+    {
+      "t": "Bahaya Menggunakan VPN Saat Akses PayPal",
+      "d": "Mengapa sistem keamanan PayPal sangat benci dengan perubahan alamat IP.",
+      "full": "VPN seringkali memberikan alamat IP yang sudah masuk daftar hitam (blacklist). Jika Anda login dengan VPN, sistem akan mencurigai adanya akses ilegal oleh hacker dan langsung melakukan pembatasan akun (limit). Selalu gunakan koneksi data seluler atau WiFi rumah yang stabil dan terlacak azBahaya Menggunakan VPN untuk Akses PayPal Menggunakan VPN untuk mengakses PayPal dapat menimbulkan berbagai risiko, termasuk kebocoran data dan ancaman terhadap privasi. Berikut adalah beberapa risiko yang mungkin terjadi Kebocoran Data VPN yang tidak terpercaya dapat mencatat aktivitas pengguna dan menyimpan data pribadi. Ini dapat menyebabkan kebocoran data yang berpotensi mengancam keamanan dan keamanan pengguna. Pelacakan Aktivitas: Beberapa VPN mungkin melacak aktivitas pengguna dan menyimpan data yang dapat digunakan untuk tujuan pemasaran atau analisis. Kebutuhan untuk VPN yang Terpercaya: Untuk menghindari risiko ini, penting untuk memilih penyedia VPN yang menggunakan protokol enkripsi modern dan memiliki kebijakan privasi yang jelas. Penting untuk mempertimbangkan risiko dan memilih VPN yang aman sebelum menggunakan layanan ini. Gunakan VPN dengan bijak dan selalu periksa keamanan dan kebijakan penyedia VPN."
+    },
+    {
+      "t": "Cara Menarik Saldo Paypal Limit 180 Hari",
+      "d": "Bagaimana cara menarik dana dari akun yang sudah dibanned permanen?",
+      "full": "Jika akun Anda terkena Permanent Limitation, dana akan tertahan selama 180 hari. Setelah masa tersebut berakhir, PayPal akan mengirimkan email notifikasi penarikan dana. Done Cogel menyediakan jasa pendampingan untuk membantu proses penarikan dana tersebut hingga sukses masuk ke bank Anda."
+    },
+    {
+      "t": "Perbedaan Akun Paypal Personal Dan Bisnis",
+      "d": "Fitur dan manfaat akun Personal Dan Bisnis",
+      "full": "Perbedaan mendasar antara rekening PayPal Personal dan Bisnis terletak pada tujuan penggunaan dan kelengkapan fitur *merchant* yang ditawarkan, di mana akun Personal dirancang khusus bagi individu untuk kebutuhan transaksi sehari-hari seperti berbelanja *online* secara aman atau mengirim dan menerima dana dari teman dan keluarga secara kasual, sedangkan akun Bisnis ditujukan khusus untuk entitas usaha, pedagang, atau pekerja lepas profesional yang membutuhkan infrastruktur pembayaran komersial yang komprehensif. Keuntungan utama menggunakan akun Bisnis adalah kemampuan untuk beroperasi dan menerima pembayaran di bawah nama perusahaan atau merek dagang Anda sehingga secara signifikan meningkatkan kredibilitas di mata pelanggan, didukung oleh fitur-fitur lanjutan seperti pembuatan faktur (*invoicing*) profesional, pengaturan tagihan langganan otomatis, pelacakan analitik penjualan terperinci, serta kemampuan untuk memberikan hak akses terbatas kepada hingga 200 karyawan untuk mengelola rute keuangan tanpa harus membagikan kata sandi utama Anda. Selain itu, akun Bisnis memungkinkan Anda menerima berbagai metode pembayaran komersial—termasuk memproses kartu kredit atau debit pelanggan secara langsung di situs web Anda meskipun pembeli tidak memiliki akun PayPal—menjadikannya pilihan yang jauh lebih tangguh dan terukur (*scalable*) untuk memaksimalkan konversi penjualan dibandingkan akun Personal yang ruang lingkupnya lebih dibatasi untuk sekadar transaksi transfer personal (*peer-to-peer*) sederhana."
+    },
+    {
+      "t": "Aktivasi 2FA: Benteng Saldo Anda",
+      "d": "Cara mengaktifkan autentikasi dua faktor untuk mencegah pembajakan akun.",
+      "full": "Jangan hanya mengandalkan password. Aktifkan Two-Factor Authentication (2FA) menggunakan aplikasi seperti Google Authenticator. Dengan fitur ini, siapapun yang mengetahui password Anda tetap tidak bisa masuk tanpa kode unik yang dikirimkan ke perangkat pribadi Anda, menjaga saldo tetap aman dari peretasan."
+    },
+    {
+      "t": "Tutorial Bayar Langganan Canva Pro & Netflix",
+      "d": "Gunakan jasa bayar Done Cogel untuk transaksi situs hiburan internasional.",
+      "full": "Banyak situs luar negeri yang tidak menerima pembayaran bank lokal Indonesia. Dengan saldo PayPal resmi kami, Anda bisa berlangganan tools desain, streaming film, hingga beli game di Steam dengan mudah. Cukup kirim tagihan invoice Anda kepada admin kami untuk diproses."
+    },
+    {
+      "t": "Cara Ganti Nama Akun PayPal",
+      "d": "Langkah-langkah administrasi memperbaiki kesalahan penulisan nama di profil.",
+      "full": "Jika ada kesalahan satu atau dua huruf, Anda bisa mengajukan perubahan nama kecil di menu pengaturan. Namun jika perubahan besar, Anda wajib mengunggah foto KTP dan dokumen pendukung. Pastikan data profil sinkron dengan data rekening bank untuk kelancaran penarikan (WD)."
+    },
+    {
+      "t": "Strategi PayPal untuk Jualan Produk Digital",
+      "d": "Hindari sengketa saat jualan aset digital, kursus online, atau jasa desain.",
+      "full": "Penjualan produk digital memiliki risiko dispute tinggi karena tidak adanya resi fisik. Selalu sertakan link download di detail transaksi dan kirimkan konfirmasi via email kepada pembeli. Simpan semua log aktivitas sebagai bukti jika suatu saat pembeli melakukan klaim tidak sah."
+    },
+    {
+      "t": "Refund Policy: Hak Anda Sebagai Pengguna",
+      "d": "Ketahui kapan dana Anda bisa dikembalikan jika terjadi kesalahan pengiriman.",
+      "full": "Proses pengembalian dana (refund) bisa dilakukan maksimal dalam waktu 180 hari sejak transaksi. Dana refund akan kembali ke saldo asal (jika pakai saldo) atau ke limit kartu (jika pakai kartu). Di Done Cogel, kami menjamin refund 100% jika kesalahan murni dari pihak kami."
+    },
+    {
+      "t": "Mengenal Kode SWIFT Bank Nasional",
+      "d": "Daftar lengkap kode bank Indonesia untuk keperluan transfer luar negeri.",
+      "full": "Untuk transfer bank internasional seperti penarikan dari PayPal, Anda memerlukan Kode SWIFT. Setiap bank di Indonesia memiliki kode unik 8-11 karakter. Contohnya BCA (CENAIDJA), Mandiri (BMRIIDJA), dan BNI (BNINIDJA). Pastikan memasukkan kode yang benar agar dana penarikan Anda tidak nyangkut atau dikembalikan dengan potongan biaya administrasi yang besar."
+    },
+    {
+      "t": "Cara Mengamankan Akun PayPal dari Hacker",
+      "d": "Tips keamanan siber dasar untuk melindungi aset digital Anda.",
+      "full": "Selain mengaktifkan 2FA, selalu periksa URL browser sebelum login (pastikan alamat resmi paypal.com). Jangan pernah mengklik tautan dari email mencurigakan (phishing) yang berpura-pura meminta Anda memperbarui password. Tim keamanan Done Cogel selalu mengedukasi member untuk menjaga kerahasiaan data pribadi."
+    },
+    {
+      "t": "Pentingnya Menjaga Reputasi & Trust Score Akun",
+      "d": "Bagaimana algoritma bot PayPal menilai tingkat kepercayaan akun Anda.",
+      "full": "Setiap akun PayPal memiliki skor internal 'Trust'. Semakin lama umur akun dan semakin sering digunakan untuk transaksi legal tanpa ada dispute, maka skornya akan semakin naik. Akun dengan Trust Score yang tinggi jarang sekali terkena limitasi, meskipun tiba-tiba menerima jumlah dana yang besar."
+    },
+    {
+      "t": "Perbedaan Akun Personal, Premier, dan Business",
+      "d": "Pilih jenis akun PayPal yang paling sesuai dengan kebutuhan transaksi Anda.",
+      "full": "Akun Personal sangat cocok untuk sekadar belanja online biasa. Namun, akun Premier atau Business sangat disarankan jika Anda adalah freelancer yang menerima pembayaran dari klien luar negeri secara rutin. Melakukan upgrade jenis akun tidak dipungut biaya dan memberikan akses fitur tambahan seperti pembuatan invoice formal."
+    },
+    {
+      "t": "Cara Mencairkan Saldo Paypal Receh",
+      "d": "Caranya Di Convert Di Jasa Convert.",
+      "full": "Untuk mencairkan saldo PayPal yang jumlahnya di bawah batas minimum penarikan bank lokal (umumnya di bawah $10 USD), cara paling cepat dan praktis adalah dengan menjualnya kepada penyedia jasa penukaran (*convert*) saldo PayPal terpercaya atau mentransfernya langsung ke kenalan yang sedang membutuhkan saldo menggunakan opsi **Kirim ke Teman dan Keluarga** (*Friends and Family*) agar terhindar dari potongan biaya admin. Jika Anda tetap ingin menariknya ke rekening bank pribadi, Anda bisa melakukan trik penggabungan dana dengan cara menerima transfer tambahan dari pihak lain ke akun Anda hingga total saldo memenuhi syarat minimum penarikan. Sebagai alternatif terbaik, alih-alih repot mencairkannya menjadi uang tunai, saldo dalam jumlah kecil tersebut sangat ideal untuk dimanfaatkan secara langsung guna membayar langganan layanan *streaming*, membeli *item* di dalam *game*, atau berbelanja produk digital di berbagai *merchant* internasional yang mendukung metode pembayaran PayPal."
+    }
+  ],
+  "helpItems": [
+    {
+      "t": "Cara Convert PayPal"
+    },
+    {
+      "t": "Paypal Limit Sementara"
+    },
+    {
+      "t": "Akun Paypal Limit Permanen"
+    },
+    {
+      "t": "Cara Atasi Limit"
+    },
+    {
+      "t": "WD Limit Permanen"
+    }
+  ],
+  "jbayarItems": [
+    {
+      "t": "eBay & Amazon",
+      "d": "Bantu checkout barang di marketplace raksasa global US/UK/JP."
+    },
+    {
+      "t": "Subscription",
+      "d": "Langganan Zoom, Canva, Netflix, Spotify, hingga Hosting."
+    },
+    {
+      "t": "Freelance Invoice",
+      "d": "Bayar tagihan invoice Upwork, Fiverr, atau vendor luar negeri."
+    },
+    {
+      "t": "Etsy Checkout",
+      "d": "Beli kerajinan tangan unik dari seluruh dunia dengan saldo kami."
+    },
+    {
+      "t": "Digital Course",
+      "d": "Bayar kursus di Udemy, Coursera, atau Skillshare secara instan."
+    },
+    {
+      "t": "Game Topup",
+      "d": "Beli saldo Steam, Razer, atau in-game purchase global."
+    }
+  ],
+  "bengkelItems": [
+    {
+      "t": "WD Limit 180 Hari",
+      "d": "Cairkan saldo di akun ban permanen ke bank lokal tanpa ribet."
+    },
+    {
+      "t": "Restore Akun Temp",
+      "d": "Pulihkan akun dari pembatasan dokumen identitas & alamat."
+    },
+    {
+      "t": "Hapus Carding Clean",
+      "d": "Bersihkan histori transaksi mencurigakan agar akun kembali sehat."
+    },
+    {
+      "t": "Panduan Appeal",
+      "d": "Strategi banding (appeal) ke tim support PayPal Singapura/US."
+    }
+  ],
+  "faqItems": [
+    {
+      "q": "Apa itu Done Cogel dan PAYSOLUSI?",
+      "a": "Done Cogel x PAYSOLUSI adalah platform penyedia jasa keuangan digital yang berfokus pada ekosistem PayPal. Kami telah beroperasi sejak tahun 2018 dan telah melayani ribuan transaksi mulai dari penukaran saldo (convert), pengisian saldo (top up), jasa pembayaran situs global, hingga penanganan masalah akun PayPal yang bermasalah (bengkel akun) secara profesional dan aman."
+    },
+    {
+      "q": "Berapa lama waktu proses transaksi?",
+      "a": "Kami menjunjung tinggi efisiensi waktu. Standar proses transaksi di platform kami adalah 5 hingga 15 menit setelah saldo PayPal kami terima dan divalidasi oleh sistem. Namun, durasi ini juga bergantung pada jam operasional bank lokal dan stabilitas jaringan internet. Jika ada kendala teknis, admin akan segera menginformasikan status transaksi Anda secara transparan via WhatsApp."
+    },
+    {
+      "q": "Apakah transaksi di sini dijamin aman?",
+      "a": "Sangat aman. Kami menggunakan akun PayPal yang sudah terverifikasi penuh and berumur tua (aged account) untuk mengirim atau menerima saldo. Saldo yang kami miliki berasal dari sumber legal hasil kerjasama dengan freelancer dan agensi digital internasional. Kami menjamin tidak ada saldo hasil carding atau aktivitas ilegal yang dapat membahayakan akun Anda di kemudian hari."
+    },
+    {
+      "q": "Apakah bisa mencairkan saldo ke DANA atau OVO?",
+      "a": "Tentu bisa. Selain mendukung seluruh bank nasional di Indonesia (BCA, Mandiri, BNI, BRI, dll), kami juga melayani penukaran saldo PayPal langsung ke dompet digital (E-Wallet) populer seperti DANA, OVO, GoPay, LinkAja, dan ShopeePay. Proses pengiriman ke e-wallet dilakukan secara real-time tepat setelah transaksi PayPal Anda divalidasi oleh admin kami."
+    },
+    {
+      "q": "Apa maksud dari Limit 180 Hari?",
+      "a": "Limit 180 hari adalah keputusan final PayPal untuk menutup sebuah akun secara permanen karena dianggap melanggar kebijakan serius. Dana di dalam akun tersebut akan ditahan (hold) selama 6 bulan (180 hari) untuk memastikan tidak ada lagi klaim refund dari pengirim. Setelah masa tersebut berakhir, dana baru bisa ditarik. Kami menyediakan jasa khusus untuk membantu proses penarikan dana ini hingga sukses masuk ke Anda."
+    }
+  ],
+  "tutorials": [
+    {
+      "t": "Upload ID AI",
+      "d": "Teknik memotret KTP agar disetujui robot PayPal secara instan."
+    },
+    {
+      "t": "Checkout eBay",
+      "d": "Panduan visual cara memberikan link keranjang ke admin Jasa Bayar."
+    },
+    {
+      "t": "Release Hold",
+      "d": "Langkah visual melepas dana tertahan (hold) dalam 48 jam."
+    },
+    {
+      "t": "Input SWIFT",
+      "d": "Instruksi visual menghubungkan bank lokal BCA/Mandiri/DANA."
+    },
+    {
+      "t": "Bayar Invoice",
+      "d": "Panduan membayar tagihan Upwork & Fiverr dari user dashboard."
+    },
+    {
+      "t": "Zoom Pro",
+      "d": "Langkah visual berlangganan tools pro tanpa kartu kredit."
+    }
+  ],
+  "education": [
+    {
+      "t": "Informasi Jasa Pencairan Saldo & Convert PayPal ke Rupiah",
+      "full": "Untuk mencairkan saldo PayPal \"receh\" secara cepat dengan akumulasi hasil yang besar dan nilai tukar (kurs) yang tinggi, strategi paling efektif yang bisa Anda terapkan adalah memanfaatkan layanan jasa penukaran atau *convert* PayPal terpercaya yang memungkinkan Anda untuk mengubah saldo di bawah batas minimum penarikan resmi menjadi Rupiah (IDR) dalam hitungan menit, langsung ke rekening bank lokal atau dompet digital (*e-wallet*) Anda. Langkah pertama dan paling krusial adalah menyeleksi penyedia jasa *convert* yang memiliki reputasi solid, testimoni transaksi yang transparan, dan berani menawarkan *rate* beli yang sangat kompetitif mendekati kurs tengah perbankan, sehingga saldo Anda tidak tergerus oleh selisih kurs yang merugikan. Setelah menyepakati harga, Anda biasanya akan diminta untuk mentransfer saldo tersebut menggunakan opsi **Kirim ke Teman dan Keluarga** (*Friends and Family*) agar dana dapat diterima secara utuh tanpa adanya potongan biaya admin dari pihak PayPal. Untuk mengoptimalkan keuntungan dan mendapatkan hasil pencairan yang \"besar\" dengan harga tertinggi, Anda sangat disarankan untuk menahan dan mengakumulasikan saldo receh tersebut terlebih dahulu—misalnya dengan mengumpulkan hasil dari berbagai platform atau menggabungkannya dengan saldo milik rekan Anda—karena mayoritas penyedia jasa *convert* menerapkan sistem kurs berjenjang, di mana semakin besar nominal ekuivalen dolar yang ditukarkan dalam satu kali transaksi massal, maka semakin tinggi pula penawaran nilai kurs Rupiah yang akan mereka berikan kepada Anda.\n\nMengapa Penarikan Saldo Paypal Langsung Ke Bank Kurang Efisien?\n\nSecara teknis, prosedur penarikan dana standar (*Standard Withdrawal*) dari saldo PayPal ke rekening bank lokal di Indonesia mengikuti siklus penyelesaian transaksi yang disebut **T+2 hingga T+4 hari kerja**. Durasi ini dipengaruhi oleh proses kliring antarbank internasional dan sistem *Local Automated Clearing House*. Dalam manajemen arus kas (*cash flow management*) yang ketat, waktu tunggu ini sering kali menjadi inefisiensi yang menghambat perputaran modal kerja (*working capital*).\n\nSelain faktor latensi waktu, PayPal menerapkan kebijakan **Currency Conversion Spread**. Nilai tukar yang ditampilkan pada dashboard retail PayPal biasanya mencakup biaya konversi tersembunyi sebesar **3% hingga 4% di atas kurs tengah pasar** (kurs *wholesale*). Belum lagi adanya potensi biaya tambahan dari bank koresponden atau bank penerima di Indonesia. Dengan menggunakan layanan profesional **Done Cogel**, Anda mendapatkan akses ke efisiensi penyelesaian transaksi di bawah 15 menit dan struktur rate yang lebih kompetitif. Kami memanfaatkan volume transaksi besar untuk memangkas selisih kurs, sehingga nilai bersih (*net value*) yang Anda terima di rekening lokal menjadi jauh lebih optimal dibandingkan metode penarikan konvensional.\n\nPerbedaan Esensial Metode Pengiriman: Friends & Family (F&F) vs Goods & Services (G&S)\n\nSaat melakukan pengiriman saldo untuk kebutuhan konversi, sangat penting bagi pengguna untuk memahami perbedaan fundamental antara metode pembayaran **Friends & Family (F&F)** dan **Goods & Services (G&S)**. Metode F&F umumnya tidak dikenakan potongan biaya transaksi di sisi penerima jika dikirim dari saldo utama (bukan kartu kredit), namun tidak dilengkapi dengan proteksi pembeli. Metode ini ditujukan khusus untuk transaksi non-komersial antar-individu yang saling memercayai.\n\nSebaliknya, metode G&S dirancang untuk transaksi komersial. Setiap transaksi G&S dikenakan potongan biaya standar PayPal (biasanya berkisar antara 4.4% + flat fee berdasarkan mata uang pengirim) dan dilindungi oleh *Buyer Protection*. Salah menggunakan metode pengiriman dapat memicu kecurigaan pada algoritma deteksi risiko PayPal. Penggunaan F&F untuk transaksi bisnis yang berulang sering kali diidentifikasi sebagai upaya menghindari biaya transaksi (*fee evasion*), yang berpotensi menyebabkan pembatasan akun. Di **Done Cogel**, kami membantu Anda menentukan metode pengiriman yang paling aman dan sesuai dengan profil serta riwayat transaksi akun Anda.\n\nMemahami Mekanisme Pending Balance (Dana Ditahan 21 Hari) dan Solusinya\n\nSalah satu kendala operasional yang paling sering dihadapi oleh pemilik akun baru atau akun yang mengalami lonjakan volume transaksi adalah kebijakan **Pending Balance** (dana ditahan selama 7 hingga 21 hari). Kebijakan ini adalah bentuk manajemen risiko yang diterapkan oleh PayPal untuk memastikan bahwa penjual atau penyedia jasa benar-benar menyelesaikan kewajibannya sebelum dana dapat dicairkan.\n\nJika saldo Anda berstatus *pending* atau ditahan oleh sistem, jangan panik. Ada langkah-langkah prosedural yang dapat dilakukan untuk mempercepat proses pelepasan dana, seperti memperbarui status pengiriman barang menjadi \"Service or Virtual Product Delivered\", atau meminta pengirim (buyer) untuk melakukan konfirmasi penerimaan barang di sisi akun mereka setelah 48 jam dari waktu transaksi. Tim kami di **Done Cogel** siap memberikan konsultasi taktis untuk membantu mengurai masalah dana tertahan ini sehingga arus kas Anda kembali berjalan normal.\n\nKeamanan Jasa Convert PayPal\n\nSalah satu kekhawatiran terbesar pengguna adalah risiko terkena saldo hasil kejahatan (carding) yang dapat menyebabkan akun PayPal terblokir secara permanen. Done Cogel menerapkan standar KYC (Know Your Customer) yang ketat. Kami memastikan bahwa setiap saldo yang kami kelola berasal dari sumber legal—hasil jasa desain, pemrograman, atau penjualan produk digital yang valid. Keamanan ini bukan hanya untuk kami, tetapi juga untuk melindungi ekosistem akun PayPal milik nasabah kami. Dengan menjaga aliran dana tetap bersih (clean funds), kami membantu nasabah mempertahankan skor reputasi akun mereka di mata sistem robotik PayPal.\n\nCara Mencairkan Saldo Paypal\n\nIndonesia merupakan salah satu negara dengan adopsi e-wallet tertinggi di dunia. Memahami kebutuhan ini, layanan convert kami tidak lagi terbatas pada bank-bank besar seperti BCA, Mandiri, atau BNI. Kami telah mengintegrasikan jalur distribusi dana ke seluruh aplikasi dompet digital utama seperti DANA, OVO, GoPay, dan ShopeePay. Hal ini memberikan kemudahan bagi pengguna yang ingin langsung menggunakan pendapatan mereka untuk kebutuhan sehari-hari, membayar tagihan listrik, hingga belanja di marketplace lokal tanpa perlu memindahkan dana berkali-kali.\n\nKapan Waktu Terbaik untuk Convert Paypal?\n\nPasar valuta asing (*Forex Market*) beroperasi 24 jam dengan volatilitas yang dipengaruhi oleh indikator makroekonomi global. Nilai tukar USD terhadap IDR dipengaruhi secara langsung oleh kebijakan moneter bank sentral Amerika Serikat (**The Federal Reserve**), data inflasi (*Consumer Price Index*), serta stabilitas geopolitik. Sebagai pengguna yang cerdas, memahami momentum pasar adalah kunci untuk memaksimalkan nilai konversi saldo Anda.\n\nKami merekomendasikan pengguna untuk melakukan eksekusi konversi saat indeks Dollar (DXY) menunjukkan tren penguatan atau saat rilis data ekonomi domestik memberikan sentimen positif terhadap nilai tukar. Di **Done Cogel**, kami menyediakan transparansi rate secara *real-time* yang diperbarui mengikuti fluktuasi pasar global. Kami mengedepankan prinsip keterbukaan biaya; nominal yang Anda kalkulasikan di awal adalah nominal presisi yang akan dikreditkan ke rekening Anda. Transparansi ini memungkinkan Anda untuk melakukan perencanaan finansial dengan akurasi tinggi tanpa perlu khawatir akan potongan biaya administrasi yang tidak terduga di akhir proses."
+    },
+    {
+      "t": "Strategi Pemulihan Dana dan Psikologi Menghadapi Permanent Limitation (Limit 180 Hari)",
+      "full": "Menerima notifikasi bahwa akun Anda telah dibatasi secara permanen adalah salah satu momen paling menekan bagi pengusaha digital. Kalimat \"You can't use PayPal anymore\" seolah menutup pintu rezeki global Anda. Namun, pemahaman mendalam mengenai struktur kepatuhan (compliance) PayPal dapat memberikan Anda jalan keluar yang rasional. Pembatasan 180 hari bukanlah sebuah hukuman mati terhadap dana Anda; itu adalah prosedur manajemen risiko yang sah di bawah hukum perbankan internasional yang diadopsi oleh PayPal.\n\nTaksonomi Pembatasan PayPal: Mengurai Perbedaan Limit Sementara dan Limit Permanen\n\nSangat krusial bagi setiap pengguna untuk membedakan tingkatan pembatasan akun yang diberlakukan oleh departemen kepatuhan PayPal. **Limit Sementara (Temporary Hold/Limitation)** biasanya dipicu oleh aktivitas defensif otomatis, seperti login dari alamat IP yang tidak dikenal (misalnya saat Anda menggunakan jaringan Wi-Fi publik atau VPN), atau adanya transaksi dengan volume yang tidak biasa bagi profil akun Anda. Penyelesaian limit jenis ini umumnya relatif mudah, yakni hanya dengan melakukan verifikasi kartu kredit, mengubah kata sandi, atau mengonfirmasi identitas diri.\n\nSebaliknya, **Limit Permanen (Permanent Limitation)** menandakan bahwa sistem kecerdasan buatan (AI) atau tim analis kepatuhan PayPal mendeteksi pelanggaran berat terhadap *Acceptable Use Policy (AUP)*, seperti aktivitas transaksi mencurigakan, tingkat sengketa (*dispute*) yang terlalu tinggi, atau dugaan manipulasi data akun. Memahami jenis limit yang menimpa akun Anda adalah langkah pertama yang menentukan keberhasilan strategi pemulihan.\n\nAkun Paypal Limit 6 Bulan (180 Hari)\n\nMengapa harus 180 hari? Angka ini tidak dipilih secara acak. Dalam industri kartu kredit dan pembayaran digital, 180 hari (sekitar 6 bulan) adalah batas waktu maksimal di mana seorang pembeli atau pemegang kartu dapat mengajukan klaim pengembalian dana (chargeback) melalui bank mereka. PayPal menahan dana Anda selama periode ini untuk memastikan bahwa jika ada sengketa dari transaksi masa lalu, dana tersedia untuk menutupi kerugian tersebut. Setelah masa 180 hari berlalu tanpa ada sengketa yang tertunda, dana tersebut secara hukum menjadi hak milik Anda sepenuhnya dan harus dilepaskan oleh PayPal.\n\nCara Memulihkan Akun Paypal Terkena Limit Sementara\n\nUntuk memulihkan akun PayPal yang terkena pembatasan (limit) sementara, langkah pertama dan paling krusial yang harus Anda lakukan adalah segera *login* ke akun tersebut dan mengakses menu **Pusat Penyelesaian** (*Resolution Center*) untuk mengetahui secara pasti alasan di balik penangguhan dan daftar tugas yang harus diselesaikan. Umumnya, sistem keamanan PayPal hanya meminta Anda untuk memverifikasi identitas dan aktivitas transaksi dengan mengunggah dokumen pendukung yang sah dan jelas, seperti foto kartu identitas resmi (KTP, SIM, atau Paspor), bukti alamat tempat tinggal berupa tagihan utilitas (listrik/air) atau rekening koran terbaru yang mencantumkan nama dan alamat Anda secara presisi, serta faktur pembelian dari *supplier* atau resi pengiriman barang jika limit dipicu oleh lonjakan transaksi komersial. Pastikan semua dokumen tersebut difoto atau dipindai dengan resolusi tinggi, berwarna, keempat sudutnya terlihat jelas, dan diunggah secara langsung melalui portal yang disediakan di Pusat Penyelesaian, lalu bersabarlah menunggu proses peninjauan oleh tim PayPal yang biasanya memakan waktu 2 hingga 5 hari kerja; namun, jika pembatasan belum dicabut setelah tenggat waktu tersebut, Anda sangat disarankan untuk mengambil inisiatif menghubungi layanan pelanggan (*Customer Service*) PayPal melalui telepon agar proses banding dapat ditinjau lebih cepat dan akun Anda kembali normal.\n\nMekanisme Penarikan Dana Pasca-180 Hari (Post-Limitation Withdrawal)\n\nSetelah masa penahanan 180 hari selesai, Anda akan menerima email resmi dari PayPal yang menyatakan bahwa dana Anda telah siap untuk ditarik. Namun, proses ini sering kali menemui hambatan teknis baru di Indonesia. Masalah umum yang kerap terjadi adalah nama pada akun PayPal tidak sama persis dengan nama pada rekening bank lokal karena adanya perbedaan format (misalnya nama dengan satu kata atau penggunaan nama keluarga).\n\nMasalah lainnya adalah hilangnya akses ke nomor telepon yang terdaftar untuk menerima kode verifikasi SMS (2FA). Di **Done Cogel**, kami mendampingi Anda melalui konsultasi khusus untuk menyelesaikan kendala-kendala penarikan akhir ini, termasuk memberikan arahan dalam menghubungkan rekening bank yang kompatibel agar dana yang tertahan selama setengah tahun tersebut dapat dicairkan dengan aman.\n\nApa yang Harus Dilakukan Jika Akun Paypal Terkena Limit Permanen?\n\nLangkah pertama: **Berhenti melakukan aktivitas masuk (login) yang berlebihan**. Sistem keamanan PayPal dapat mendeteksi kegugupan pengguna. Langkah kedua: **Amankan bukti transaksi**. Simpan semua invoice, bukti pengiriman barang, atau log pekerjaan yang telah Anda lakukan. Langkah ketiga: **Jangan membuat akun baru segera**. Membuat akun baru (stealth account) dengan IP atau perangkat yang sama hanya akan menyebabkan akun baru tersebut ikut terlimit dalam hitungan jam. Di Done Cogel, kami menyediakan jasa pendampingan (Bengkel PayPal) untuk membantu Anda menyiapkan dokumen banding atau membantu proses penarikan dana (WD) setelah masa 180 hari berakhir melalui jalur komunikasi resmi dengan tim support PayPal Singapura Jika akun PayPal Anda terkena limit permanen, keputusan tersebut umumnya bersifat final dan tidak dapat dipulihkan kembali, sehingga langkah terbaik yang harus dilakukan adalah memeriksa email pemberitahuan resmi untuk mengetahui detail penahanan dana. Anda wajib menunggu selama 180 hari (masa karantina) agar sisa saldo yang ada di dalam akun tersebut bisa dicairkan atau ditransfer ke rekening bank yang terhubung. Selama masa tunggu ini, sangat disarankan untuk segera beralih ke platform pembayaran alternatif seperti Wise, Stripe, atau Payoneer untuk melanjutkan aktivitas transaksi Anda, serta hindari membuat akun PayPal baru menggunakan data diri atau perangkat yang sama karena sistem PayPal kemungkinan besar akan mendeteksi dan memblokirnya kembali secara otomatis.\n                        .\n\nCara Mengatasi Akun Paypal Yang Terkena Limit Permanen\n\nPembatasan akun (*Account Limitation*) adalah mekanisme manajemen risiko yang diterapkan PayPal untuk melindungi ekosistemnya. Limit sementara biasanya dipicu oleh verifikasi rutin atau aktivitas login yang tidak biasa, sementara limit permanen sering kali disebabkan oleh pelanggaran berat terhadap **Acceptable Use Policy (AUP)**. Untuk menjaga stabilitas akun, Anda wajib membangun infrastruktur digital yang kredibel dengan menggunakan identitas legal yang terverifikasi sepenuhnya sesuai dokumen negara.\n\nLangkah preventif utama adalah mengaktifkan **Two-Factor Authentication (2FA)** untuk mencegah akses tidak sah. Selain itu, sangat krusial untuk menjaga konsistensi dalam pola transaksi. Hindari lonjakan volume transaksi yang drastis pada akun baru dan pastikan setiap transaksi kategori *Goods & Services* didukung oleh dokumentasi yang kuat, seperti invoice digital dan bukti pemenuhan layanan (*Proof of Delivery*). Bermitralah dengan **Done Cogel** memberikan lapisan perlindungan tambahan; kami membantu menjaga profil transaksi Anda tetap dalam parameter \"aman\" menurut algoritma PayPal. Dengan menjaga kepatuhan terhadap regulasi PayPal, akun Anda akan berkembang menjadi aset finansial yang resilien dengan limit transaksi yang terus meningkat secara organik.\n\nSupaya Akun Paypal Aman Dipakai\n\nAgar tidak terulang kembali, Anda harus membangun infrastruktur digital yang lebih kuat. Gunakan data identitas yang asli, aktifkan verifikasi dua langkah (2FA), dan pastikan Anda memiliki dokumentasi yang lengkap untuk setiap transaksi G&S (Goods & Services). Memilih partner convert yang terpercaya seperti Done Cogel juga membantu menjaga aliran transaksi Anda tetap stabil dan terhindar dari deteksi aktivitas mencurigakan oleh AI PayPal Menjaga kesehatan dan stabilitas akun PayPal di era pengawasan algoritma AI yang sangat ketat memerlukan strategi resiliensi digital yang komprehensif dan berkelanjutan. Langkah pertama yang paling krusial adalah memastikan integritas data identitas Anda secara absolut; pastikan seluruh informasi profil mulai dari nama lengkap, alamat dompet digital, hingga nomor telepon sinkron dengan dokumen legal negara seperti KTP atau Paspor untuk memenuhi standar kepatuhan KYC (Know Your Customer) global yang diterapkan oleh PayPal. Selanjutnya, Anda wajib memperkuat lapisan keamanan teknis dengan mengaktifkan fitur Autentikasi Dua Faktor (2FA) serta menjaga konsistensi akses pada perangkat utama; sangat disarankan untuk menghindari penggunaan VPN, Proxy, atau kebiasaan berganti-ganti perangkat dalam waktu singkat karena aktivitas tersebut akan langsung memicu deteksi 'Unauthorized Access' yang berujung pada pembatasan akun secara otomatis demi perlindungan dana. Dalam aspek operasional bisnis, setiap transaksi yang masuk melalui kategori Goods & Services (G&S) wajib didukung oleh dokumentasi transaksional yang valid dan lengkap, seperti invoice digital yang mendetail, bukti pengerjaan proyek (log pengerjaan), atau nomor resi pengiriman fisik yang terlacak, karena transparansi data merupakan kunci utama untuk memenangkan sengketa saat menghadapi audit mendadak dari tim resolusi PayPal Singapura. Selain itu, sangat penting bagi Anda untuk menjaga pola transaksi yang stabil, konsisten, dan terukur; hindari lonjakan volume dana masuk yang drastis secara tiba-tiba pada akun yang baru dibuat atau akun yang sudah lama pasif guna membangun reputasi Trust Score akun secara organik di mata sistem kepatuhan internasional. Terakhir, memilih untuk bekerja sama dengan partner konversi saldo profesional seperti Done Cogel adalah langkah preventif yang sangat strategis untuk menjaga ekosistem akun Anda tetap sehat; kami berkomitmen tinggi menjaga legalitas sumber dana (Clean Funds) dari setiap transaksi yang diproses, sehingga profil keuangan Anda tetap berada dalam parameter aman dan terhindar dari segala bentuk deteksi aktivitas mencurigakan oleh robotik AI PayPal, memungkinkan Anda untuk terus mengembangkan bisnis di pasar global dengan rasa aman, nyaman, dan tanpa hambatan likuiditas."
+    },
+    {
+      "t": "Panduan Teknis Mencairkan Saldo PayPal Pasca Limit Permanen 180 Hari",
+      "full": "Ketika sebuah akun dinyatakan mengalami penangguhan atau limit permanen, hak akses transaksional harian seperti mengirim atau menerima dana akan dicabut sepenuhnya. Kendati demikian, hak kepemilikan atas dana yang tersisa di dalam saldo tetap dilindungi secara hukum. Setelah masa penahanan (holding period) selama 180 hari berakhir, saldo tersebut dapat dicairkan kembali ke rekening domestik. Berikut adalah prosedur sistematis untuk melakukan penarikan dana tersebut secara mandiri.\n\n1. Konfirmasi Berakhirnya Masa Tunggu Melalui Notifikasi Email Resmi\n\nLangkah pertama yang mutlak dilewati adalah menunggu hingga genap 180 hari sejak tanggal pertama kali menerima email pembatasan. PayPal menetapkan masa tunggu ini untuk memastikan tidak ada lagi sengketa atau tagihan balik (*chargeback*) dari pembeli Anda di masa lalu. \n\nSetelah melewati periode ini, PayPal akan secara otomatis mengirimkan email notifikasi ke alamat surel terdaftar Anda dengan subjek yang umumnya berbunyi **\"Your funds are ready for withdrawal\"** atau **\"Dana PayPal Anda telah siap ditarik\"**. Jangan mencoba memaksakan penarikan dana sebelum Anda menerima pesan resmi ini, karena opsi penarikan di dashboard akun Anda masih akan dinonaktifkan secara sistemik.\n\n2. Persiapan Log In dan Pembersihan Sesi Peramban\n\nSetelah email notifikasi diterima, lakukan proses masuk (*log in*) ke akun PayPal Anda menggunakan peramban (*browser*) komputer atau laptop. Sebelum memasukkan kredensial, disarankan untuk membersihkan riwayat penelusuran, tembolok (*cache*), serta kuki (*cookies*) pada peramban Anda, atau menggunakan mode samaran (*incognito mode*).\n\nHal ini bertujuan untuk meminimalkan risiko pendeteksian pola akses tidak biasa oleh sistem keamanan PayPal. Pastikan pula koneksi internet yang digunakan stabil dan tidak menggunakan VPN atau proxy komersial, guna mencegah akun terkunci ulang karena masalah \"Akses Tidak Sah\" (*Unauthorized Access*).\n\n3. Prosedur Menghubungkan Rekening Bank Lokal\n\nUntuk memindahkan dana ke rekening domestik di Indonesia, Anda perlu menautkan rekening bank yang valid melalui langkah berikut: Navigasikan halaman utama ke menu **Wallet** (Dompet) di bagian atas dashboard. Pilih opsi **Hubungkan Rekening Bank** (*Link a Bank Account*). Masukkan nama bank lokal (misalnya Bank Central Asia, Bank Mandiri, dst.) beserta kode kliring bank (7 digit sandi kliring bank di Indonesia). Masukkan nomor rekening bank Anda dengan presisi. Klik **Hubungkan Bank Anda** untuk menyimpan konfigurasi tersebut. Catatan Kritis: Nama yang tertera pada rekening bank harus sama persis dengan nama pemilik yang terdaftar di akun PayPal. Jika terdapat perbedaan nama, proses transfer berisiko tinggi ditolak oleh bank penerima, dan dana akan dikembalikan ke PayPal dengan dikenakan potongan biaya penolakan (return fee).\n\n4. Melakukan Eksekusi Penarikan (Withdrawal)\n\nApabila rekening bank sudah sukses terhubung, proses transfer dapat segera dieksekusi: Kembali ke halaman utama atau menu **Wallet**. Klik tombol **Transfer Dana** (*Transfer Funds*). Pilih rekening bank lokal yang baru saja ditautkan sebagai tujuan transfer. Masukkan jumlah saldo yang ingin dicairkan (disarankan menarik seluruh sisa saldo untuk mengosongkan akun). Tinjau kembali rincian konversi mata uang (jika saldo awal berupa USD) dan estimasi biaya penarikan, lalu konfirmasi transaksi. Berdasarkan standar operasional, proses kliring internasional dari PayPal ke sistem perbankan nasional Indonesia membutuhkan waktu penyelesaian sekitar **1 hingga 4 hari kerja** (tidak termasuk hari Sabtu, Minggu, dan hari libur nasional).\n\n5. Solusi Mengatasi Kendala Teknis Saat Proses Penarikan\n\nDalam beberapa kasus di lapangan, pengguna kerap menemui kendala di mana tombol penarikan terkunci atau sistem menolak penautan bank baru karena status pembatasan permanen akun. Jika mengalami hambatan ini, solusi yang dapat ditempuh adalah: **Menghubungi Pusat Penyelesaian via Message Center:** Masuk ke menu bantuan di situs PayPal dan kirimkan pesan tertulis yang menjelaskan bahwa masa 180 hari telah selesai dan Anda memerlukan pembukaan akses sementara khusus untuk menautkan bank. **Melakukan Panggilan Telepon Langsung (Live Call):** Untuk respons yang lebih cepat, Anda dapat menghubungi tim dukungan regional PayPal (Singapura) di nomor resmi **+65-6510-4584**. Layanan ini menyediakan operator berbahasa Indonesia pada jam kerja operasional. Informasikan secara sopan kepada agen bahwa Anda telah menerima email pelepasan dana dan meminta bantuan manual untuk memproses transfer saldo ke bank lokal Anda. **Menghubungi Tim Support Internasional Lewat Media Sosial:** Menghubungi akun resmi layanan pelanggan PayPal di platform X (dahulu Twitter) melalui akun **@AskPayPal** juga terbukti efektif dalam memicu penyelesaian kendala teknis pada akun yang terlimit."
+    },
+    {
+      "t": "Mastering Global Shopping: Solusi Jasa Bayar PayPal Sebagai Jembatan Belanja Tanpa Batas",
+      "full": "Belanja produk fisik dari luar negeri atau berlangganan layanan software (SaaS) kelas dunia seringkali terkendala oleh keterbatasan kartu kredit lokal Indonesia. Meskipun saat ini banyak bank digital menawarkan kartu debit virtual (VCC), banyak merchant global seperti eBay, Amazon, Etsy, atau provider hosting seperti Bluehost dan SiteGround yang tetap mewajibkan pembayaran melalui PayPal yang terverifikasi kuat. **Jasa Bayar PayPal** hadir sebagai solusi inklusi finansial, memungkinkan siapapun di Indonesia untuk bertransaksi di pasar global dengan mudah dan aman.\n\nEfisiensi Biaya dan Proteksi Pembeli\n\nSalah satu keuntungan menggunakan jasa bayar kami adalah perlindungan terhadap nilai tukar yang tidak menentu. Saat Anda menggunakan kartu kredit pribadi, seringkali terdapat biaya tambahan transaksi luar negeri (foreign transaction fee) yang tidak terlihat dan rate kurs bank yang sangat mahal. Dengan jasa bayar Done Cogel, Anda mendapatkan kepastian harga di depan dalam Rupiah. Selain itu, kami melakukan transaksi melalui akun PayPal Business kami yang memiliki proteksi pembeli (Buyer Protection) yang lebih kuat, memberikan rasa aman ekstra jika barang yang Anda pesan tidak sampai atau tidak sesuai deskripsi.\n\nManajemen Pembayaran Berlangganan (Recurring Billing/SaaS Subscriptions)\n\nBanyak platform digital seperti lisensi software, layanan cloud (AWS, Google Cloud), serta aplikasi produktivitas (Slack, Notion, Canva Pro) menggunakan skema pembayaran berulang bulanan atau tahunan (*Recurring Billing*). Pembayaran jenis ini biasanya membutuhkan persetujuan otomatis (*Pre-approved Payments*) pada akun PayPal. \n\nMengelola pembayaran berlangganan melalui pihak ketiga memerlukan koordinasi dan sistem pencatatan yang rapi agar layanan tidak terputus secara tiba-tiba. Di **Done Cogel**, kami membantu memfasilitasi kebutuhan ini dengan menyediakan opsi pemantauan berkala dan panduan mengenai cara mengaktifkan serta membatalkan persetujuan pembayaran otomatis langsung dari dashboard merchant, sehingga Anda tidak dibebankan biaya di luar rencana pengeluaran.\n\nAlur Penanganan Retur Barang dan Refund (Pengembalian Dana) Internasional\n\nDalam belanja online internasional, skenario di mana barang yang diterima rusak, tidak sesuai deskripsi, atau bahkan hilang dalam perjalanan adalah risiko yang selalu ada. Jika hal ini terjadi pada transaksi yang dibayar menggunakan layanan jasa bayar kami, proses klaim pengembalian dana (*refund*) tetap dapat dijalankan secara prosedural.\n\nDana pengembalian dari merchant luar negeri akan dikirimkan kembali ke akun PayPal sumber pembayaran kami. Setelah dana berhasil dikreditkan kembali ke akun kami oleh sistem PayPal, kami akan langsung meneruskan dana tersebut ke rekening bank lokal atau dompet digital Anda dengan perhitungan kurs yang disepakati secara transparan. Kami berkomitmen untuk mendampingi Anda dalam proses komunikasi sengketa (*dispute*) dengan merchant hingga hak-hak Anda memenuhi kelayakan.\n\nAspek Perpajakan (Pajak Impor/Bea Cukai) Belanja Fisik dari Luar Negeri\n\nMembeli barang fisik dari luar negeri menggunakan PayPal tidak hanya selesai pada tahap pembayaran barang dan ongkos kirim. Pengguna juga wajib memahami regulasi kepabeanan yang berlaku di Indonesia terkait barang impor kiriman. Berdasarkan aturan Direktorat Jenderal Bea dan Cukai, setiap barang impor bernilai tertentu dikenakan Pajak Pertambahan Nilai (PPN) impor serta Bea Masuk dengan tarif yang disesuaikan dengan Kode HS (*Harmonized System*) barang tersebut.\n\nKami selalu mengedukasi para pelanggan jasa bayar kami untuk memperhitungkan biaya pajak impor ini di awal sebelum melakukan pembelian, agar barang tidak tertahan di kantor pabean atau dikenakan denda keterlambatan. Pemahaman ini membantu Anda mengestimasi biaya total riil (*total landed cost*) dari produk yang Anda impor secara akurat.\n\nMendukung Ekonomi Kreatif: Membayar Tools dan Lisensi Digital\n\nBagi desainer grafis, video editor, dan pengembang web, tools seperti Adobe Creative Cloud, lisensi Envato Elements, atau plugin WordPress premium adalah \"senjata\" utama. Banyak dari layanan ini memerlukan pembayaran bulanan (recurring payment) via PayPal. Kami membantu para kreator muda Indonesia untuk tetap bisa berkarya dengan software original tanpa harus memiliki kartu kredit. Prosesnya instan: Anda kirim invoice atau detail akun, kami bayar, dan layanan Anda langsung aktif seketika. Ini adalah bentuk komitmen kami dalam mendukung pertumbuhan ekonomi kreatif digital di tanah air.\n\nMenghindari Penipuan Jasa Bayar Abal-Abal\n\nDi dunia maya, banyak bertebaran jasa bayar dengan rate yang tidak masuk akal murahnya. Waspadalah, karena seringkali mereka menggunakan kartu hasil curian (carding). Jika merchant mendeteksi pembayaran ilegal, akun belanja Anda bisa di-banned secara permanen dan barang yang Anda pesan tidak akan pernah dikirim. Done Cogel berkomitmen tinggi menjaga legalitas saldo yang digunakan. Kepercayaan nasabah adalah aset terbesar kami, itulah sebabnya kami tetap bertahan sebagai salah satu penyedia jasa bayar tepercaya yang aktif melayani ribuan pelanggan setia sejak tahun 2018."
+    }
+  ],
+  "about": [
+    "Penyedia layanan ekosistem PayPal terpercaya, aman, dan tercepat di Indonesia sejak 2018.",
+    "Menjadi platform inklusi finansial global utama bagi talenta digital, freelancer, dan pelaku bisnis kreatif di Indonesia dalam mengelola transaksi keuangan internasional secara instan tanpa hambatan.",
+    "Menyediakan rate konversi yang kompetitif, membangun sistem penarikan dana limit yang aman, menjaga legalitas aliran saldo 100%, serta memberikan edukasi menyeluruh seputar sistem keuangan digital.",
+    "Transaksi Sukses",
+    "Member Aktif",
+    "Rata-rata Proses",
+    "Clean & Legal Funds"
+  ],
+  "tos": []
+}
