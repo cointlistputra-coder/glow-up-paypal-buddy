@@ -10,11 +10,36 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BengkelRouteImport } from './routes/bengkel'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as JasaBayarRouteImport } from './routes/jasa-bayar'
+import { Route as PanduanRouteImport } from './routes/panduan'
 import { Route as PembuatanAkunRouteImport } from './routes/pembuatan-akun'
+import { Route as TutorialRouteImport } from './routes/tutorial'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BengkelRoute = BengkelRouteImport.update({
+  id: '/bengkel',
+  path: '/bengkel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JasaBayarRoute = JasaBayarRouteImport.update({
+  id: '/jasa-bayar',
+  path: '/jasa-bayar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PanduanRoute = PanduanRouteImport.update({
+  id: '/panduan',
+  path: '/panduan',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PembuatanAkunRoute = PembuatanAkunRouteImport.update({
@@ -22,31 +47,78 @@ const PembuatanAkunRoute = PembuatanAkunRouteImport.update({
   path: '/pembuatan-akun',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TutorialRoute = TutorialRouteImport.update({
+  id: '/tutorial',
+  path: '/tutorial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bengkel': typeof BengkelRoute
+  '/blog': typeof BlogRoute
+  '/jasa-bayar': typeof JasaBayarRoute
+  '/panduan': typeof PanduanRoute
   '/pembuatan-akun': typeof PembuatanAkunRoute
+  '/tutorial': typeof TutorialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bengkel': typeof BengkelRoute
+  '/blog': typeof BlogRoute
+  '/jasa-bayar': typeof JasaBayarRoute
+  '/panduan': typeof PanduanRoute
   '/pembuatan-akun': typeof PembuatanAkunRoute
+  '/tutorial': typeof TutorialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bengkel': typeof BengkelRoute
+  '/blog': typeof BlogRoute
+  '/jasa-bayar': typeof JasaBayarRoute
+  '/panduan': typeof PanduanRoute
   '/pembuatan-akun': typeof PembuatanAkunRoute
+  '/tutorial': typeof TutorialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pembuatan-akun'
+  fullPaths:
+    | '/'
+    | '/bengkel'
+    | '/blog'
+    | '/jasa-bayar'
+    | '/panduan'
+    | '/pembuatan-akun'
+    | '/tutorial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pembuatan-akun'
-  id: '__root__' | '/' | '/pembuatan-akun'
+  to:
+    | '/'
+    | '/bengkel'
+    | '/blog'
+    | '/jasa-bayar'
+    | '/panduan'
+    | '/pembuatan-akun'
+    | '/tutorial'
+  id:
+    | '__root__'
+    | '/'
+    | '/bengkel'
+    | '/blog'
+    | '/jasa-bayar'
+    | '/panduan'
+    | '/pembuatan-akun'
+    | '/tutorial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BengkelRoute: typeof BengkelRoute
+  BlogRoute: typeof BlogRoute
+  JasaBayarRoute: typeof JasaBayarRoute
+  PanduanRoute: typeof PanduanRoute
   PembuatanAkunRoute: typeof PembuatanAkunRoute
+  TutorialRoute: typeof TutorialRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +130,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bengkel': {
+      id: '/bengkel'
+      path: '/bengkel'
+      fullPath: '/bengkel'
+      preLoaderRoute: typeof BengkelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jasa-bayar': {
+      id: '/jasa-bayar'
+      path: '/jasa-bayar'
+      fullPath: '/jasa-bayar'
+      preLoaderRoute: typeof JasaBayarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panduan': {
+      id: '/panduan'
+      path: '/panduan'
+      fullPath: '/panduan'
+      preLoaderRoute: typeof PanduanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pembuatan-akun': {
       id: '/pembuatan-akun'
       path: '/pembuatan-akun'
@@ -65,12 +165,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PembuatanAkunRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tutorial': {
+      id: '/tutorial'
+      path: '/tutorial'
+      fullPath: '/tutorial'
+      preLoaderRoute: typeof TutorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BengkelRoute: BengkelRoute,
+  BlogRoute: BlogRoute,
+  JasaBayarRoute: JasaBayarRoute,
+  PanduanRoute: PanduanRoute,
   PembuatanAkunRoute: PembuatanAkunRoute,
+  TutorialRoute: TutorialRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
