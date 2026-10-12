@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Lock, ShieldCheck, CheckCircle2, Clock, XCircle, Search, LogOut } from 'lucide-react';
+import { Lock, ShieldCheck, CheckCircle2, Clock, XCircle, LogOut, Star, Trash2, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { pageMetadata } from '@/lib/metadata';
 
 export const Route = createFileRoute('/admin')({
-  head: () => pageMetadata('Admin Dashboard', 'Panel kelola transaksi TransferCepat.'),
+  head: () => pageMetadata('Admin Dashboard', 'Panel kelola transaksi & ulasan TransferCepat.'),
   component: AdminPage,
 });
 
@@ -21,38 +21,38 @@ type Transaction = {
   createdAt: string;
 };
 
-const ADMIN_PASSWORD = 'admin123'; // Ganti password admin Anda di sini
+type Review = {
+  id: string;
+  name: string;
+  rating: number;
+  service: string;
+  comment: string;
+  date: string;
+};
+
+const ADMIN_PASSWORD = 'admin123';
 
 function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
+  const [activeTab, setActiveTab] = useState<'transaksi' | 'ulasan'>('transaksi');
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [filterQuery, setFilterQuery] = useState('');
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  // Form Tambah Ulasan Manual oleh Admin
+  const [showAddReview, setShowAddReview] = useState(false);
+  const [revName, setRevName] = useState('');
+  const [revRating, setRevRating] = useState(5);
+  const [revService, setRevService] = useState('Convert PayPal');
+  const [revComment, setRevComment] = useState('');
 
   useEffect(() => {
-    // Memuat database transaksi
     try {
-      const saved = localStorage.getItem('tc_all_transactions');
-      if (saved) {
-        setTransactions(JSON.parse(saved));
-      } else {
-        // Contoh data awal
-        const sample: Transaction[] = [
-          {
-            id: 'TC-94821',
-            customerName: 'Budi Santoso',
-            whatsapp: '08123456789',
-            service: 'Convert PayPal',
-            amountUsd: 150,
-            totalIdr: 'Rp 2.355.000',
-            targetAccount: 'BCA 1234567890',
-            status: 'Validasi Mutasi',
-            createdAt: 'Hari ini, 05:20 WIB',
-          },
-        ];
-        setTransactions(sample);
-        localStorage.setItem('tc_all_transactions', JSON.stringify(sample));
-      }
+      const savedTx = localStorage.getItem('tc_all_transactions');
+      if (savedTx) setTransactions(JSON.parse(savedTx));
+
+      const savedRev = localStorage.getItem('tc_customer_reviews');
+      if (savedRev) setReviews(JSON.parse(savedRev));
     } catch {}
   }, []);
 
@@ -71,6 +71,32 @@ function AdminPage() {
     localStorage.setItem('tc_all_transactions', JSON.stringify(updated));
   };
 
+  const deleteReview = (id: string) => {
+    if (confirm('Yakin ingin menghapus ulasan ini?')) {
+      const updated = reviews.filter((r) => r.id !== id);
+      setReviews(updated);
+      localStorage.setItem('tc_customer_reviews', JSON.stringify(updated));
+    }
+  };
+
+  const addManualReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newR: Review = {
+      id: 'rev-' + Date.now(),
+      name: revName,
+      rating: revRating,
+      service: revService,
+      comment: revComment,
+      date: 'Hari ini',
+    };
+    const updated = [newR, ...reviews];
+    setReviews(updated);
+    localStorage.setItem('tc_customer_reviews', JSON.stringify(updated));
+    setRevName('');
+    setRevComment('');
+    setShowAddReview(false);
+  };
+
   if (!isAuthenticated) {
     return (
       <main className="site-width section" style={{ minHeight: '70vh', display: 'grid', placeItems: 'center' }}>
@@ -79,11 +105,11 @@ function AdminPage() {
             <Lock className="text-primary" size={24} />
           </div>
           <h2 style={{ fontSize: '20px', fontWeight: 800, marginBottom: '6px' }}>Login Admin</h2>
-          <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', marginBottom: '20px' }}>Masukkan kata sandi untuk mengelola transaksi.</p>
+          <p style={{ fontSize: '11px', color: 'var(--muted-foreground)', marginBottom: '20px' }}>Masukkan kata sandi pengelola.</p>
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <input
               type="password"
-              placeholder="Password Admin (Default: admin123)"
+              placeholder="Password Admin (admin123)"
               value={passwordInput}
               onChange={(e) => setPasswordInput(e.target.value)}
               required
@@ -96,100 +122,102 @@ function AdminPage() {
     );
   }
 
-  const filtered = transactions.filter((t) =>
-    `${t.id} ${t.customerName} ${t.whatsapp}`.toLowerCase().includes(filterQuery.toLowerCase())
-  );
-
   return (
     <main className="site-width section" style={{ minHeight: '80vh' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '15px' }}>
         <div>
-          <span className="eyebrow" style={{ margin: 0 }}>PANEL PENGELOLA</span>
-          <h1 style={{ fontSize: '28px', fontWeight: 800 }}>Kelola Status Transaksi</h1>
+          <span className="eyebrow" style={{ margin: 0 }}>PANEL PENGELOLA RESMI</span>
+          <h1 style={{ fontSize: '26px', fontWeight: 800 }}>Dashboard TransferCepat</h1>
         </div>
         <Button variant="outline" size="sm" onClick={() => setIsAuthenticated(false)}>
-          <LogOut size={14} /> Keluar Admin
+          <LogOut size={14} /> Keluar
         </Button>
       </div>
 
-      <div style={{ marginBottom: '20px', maxWidth: '400px' }}>
-        <input
-          type="search"
-          placeholder="Cari ID transaksi, nama, no HP..."
-          value={filterQuery}
-          onChange={(e) => setFilterQuery(e.target.value)}
-          style={{ width: '100%', padding: '8px 14px', borderRadius: '6px', border: '1px solid var(--border)' }}
-        />
+      {/* Tab Navigasi Admin */}
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '25px' }}>
+        <Button variant={activeTab === 'transaksi' ? 'default' : 'outline'} onClick={() => setActiveTab('transaksi')}>
+          Kelola Transaksi ({transactions.length})
+        </Button>
+        <Button variant={activeTab === 'ulasan' ? 'default' : 'outline'} onClick={() => setActiveTab('ulasan')}>
+          Kelola Ulasan ({reviews.length})
+        </Button>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-        {filtered.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              padding: '20px',
-              backgroundColor: 'var(--card)',
-              borderRadius: '10px',
-              border: '1px solid var(--border)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
-              <div>
-                <strong style={{ fontSize: '16px', color: 'var(--primary)' }}>{item.id}</strong>
-                <span style={{ fontSize: '11px', color: 'var(--muted-foreground)', marginLeft: '10px' }}>{item.createdAt}</span>
+      {/* TAB 1: KELOLA TRANSAKSI */}
+      {activeTab === 'transaksi' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {transactions.map((item) => (
+            <div key={item.id} style={{ padding: '20px', backgroundColor: 'var(--card)', borderRadius: '10px', border: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
+                <div>
+                  <strong style={{ fontSize: '16px', color: 'var(--primary)' }}>{item.id}</strong>
+                  <span style={{ fontSize: '11px', color: 'var(--muted-foreground)', marginLeft: '10px' }}>{item.createdAt}</span>
+                </div>
+                <span style={{ fontSize: '11px', fontWeight: 800, padding: '4px 10px', borderRadius: '20px', backgroundColor: item.status === 'Selesai' ? 'rgba(5, 150, 105, 0.15)' : 'rgba(2, 132, 199, 0.15)', color: item.status === 'Selesai' ? '#059669' : '#0284c7' }}>
+                  {item.status}
+                </span>
               </div>
-              <span
-                style={{
-                  fontSize: '11px',
-                  fontWeight: 800,
-                  padding: '4px 10px',
-                  borderRadius: '20px',
-                  backgroundColor:
-                    item.status === 'Selesai'
-                      ? 'rgba(5, 150, 105, 0.15)'
-                      : item.status === 'Dibatalkan'
-                      ? 'rgba(239, 68, 68, 0.15)'
-                      : 'rgba(2, 132, 199, 0.15)',
-                  color:
-                    item.status === 'Selesai'
-                      ? '#059669'
-                      : item.status === 'Dibatalkan'
-                      ? '#ef4444'
-                      : '#0284c7',
-                }}
-              >
-                {item.status}
-              </span>
+              <div style={{ fontSize: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '8px', marginBottom: '12px' }}>
+                <div>Pelanggan: <strong>{item.customerName}</strong> ({item.whatsapp})</div>
+                <div>Nominal: <strong>${item.amountUsd} USD</strong> ➔ <strong>{item.totalIdr}</strong></div>
+                <div>Tujuan: <strong>{item.targetAccount}</strong></div>
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', paddingTop: '10px', borderTop: '1px solid var(--border)' }}>
+                <span style={{ fontSize: '11px', fontWeight: 700, alignSelf: 'center' }}>Ubah Status:</span>
+                <Button size="sm" variant={item.status === 'Menunggu Saldo' ? 'default' : 'outline'} onClick={() => updateStatus(item.id, 'Menunggu Saldo')}><Clock size={12} /> Menunggu Saldo</Button>
+                <Button size="sm" variant={item.status === 'Validasi Mutasi' ? 'default' : 'outline'} onClick={() => updateStatus(item.id, 'Validasi Mutasi')}><ShieldCheck size={12} /> Validasi Mutasi</Button>
+                <Button size="sm" variant={item.status === 'Selesai' ? 'default' : 'outline'} style={{ backgroundColor: item.status === 'Selesai' ? '#059669' : undefined }} onClick={() => updateStatus(item.id, 'Selesai')}><CheckCircle2 size={12} /> Selesai</Button>
+                <Button size="sm" variant={item.status === 'Dibatalkan' ? 'destructive' : 'outline'} onClick={() => updateStatus(item.id, 'Dibatalkan')}><XCircle size={12} /> Batal</Button>
+              </div>
             </div>
+          ))}
+        </div>
+      )}
 
-            <div style={{ fontSize: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px' }}>
-              <div>Pelanggan: <strong>{item.customerName}</strong> ({item.whatsapp})</div>
-              <div>Nominal: <strong>${item.amountUsd} USD</strong> ➔ <strong>{item.totalIdr}</strong></div>
-              <div>Tujuan: <strong>{item.targetAccount}</strong></div>
-            </div>
-
-            {/* Tombol Pengubah Status oleh Admin */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', paddingTop: '10px', borderTop: '1px solid var(--border)' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700, alignSelf: 'center', marginRight: '6px' }}>Ubah Status:</span>
-              <Button size="sm" variant={item.status === 'Menunggu Saldo' ? 'default' : 'outline'} onClick={() => updateStatus(item.id, 'Menunggu Saldo')}>
-                <Clock size={12} /> Menunggu Saldo
-              </Button>
-              <Button size="sm" variant={item.status === 'Validasi Mutasi' ? 'default' : 'outline'} onClick={() => updateStatus(item.id, 'Validasi Mutasi')}>
-                <ShieldCheck size={12} /> Validasi Mutasi
-              </Button>
-              <Button size="sm" variant={item.status === 'Selesai' ? 'default' : 'outline'} style={{ backgroundColor: item.status === 'Selesai' ? '#059669' : undefined }} onClick={() => updateStatus(item.id, 'Selesai')}>
-                <CheckCircle2 size={12} /> Selesai / Ditransfer
-              </Button>
-              <Button size="sm" variant={item.status === 'Dibatalkan' ? 'destructive' : 'outline'} onClick={() => updateStatus(item.id, 'Dibatalkan')}>
-                <XCircle size={12} /> Batal
-              </Button>
-            </div>
+      {/* TAB 2: KELOLA ULASAN */}
+      {activeTab === 'ulasan' && (
+        <div>
+          <div style={{ marginBottom: '20px' }}>
+            <Button onClick={() => setShowAddReview(!showAddReview)} size="sm">
+              <PlusCircle size={14} /> {showAddReview ? 'Tutup Form' : 'Tambah Ulasan Baru'}
+            </Button>
           </div>
-        ))}
-      </div>
+
+          {showAddReview && (
+            <form onSubmit={addManualReview} style={{ padding: '20px', backgroundColor: 'var(--card)', borderRadius: '10px', border: '1px solid var(--border)', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <h4 style={{ margin: 0, fontWeight: 700 }}>Tambah Ulasan (Admin)</h4>
+              <input required placeholder="Nama Pelanggan" value={revName} onChange={(e) => setRevName(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)' }} />
+              <select value={revRating} onChange={(e) => setRevRating(Number(e.target.value))} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)' }}>
+                <option value={5}>5 Bintang (Sangat Puas)</option>
+                <option value={4}>4 Bintang (Puas)</option>
+              </select>
+              <input required placeholder="Layanan (Contoh: Convert PayPal ke BCA)" value={revService} onChange={(e) => setRevService(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)' }} />
+              <textarea required rows={3} placeholder="Isi Testimoni..." value={revComment} onChange={(e) => setRevComment(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)' }} />
+              <Button type="submit" size="sm" style={{ alignSelf: 'flex-start' }}>Simpan Ulasan</Button>
+            </form>
+          )}
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {reviews.map((r) => (
+              <div key={r.id} style={{ padding: '16px', backgroundColor: 'var(--card)', borderRadius: '8px', border: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                <div>
+                  <div style={{ display: 'flex', gap: '4px', color: '#f59e0b', marginBottom: '4px' }}>
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} size={14} fill={s <= r.rating ? '#f59e0b' : 'none'} />
+                    ))}
+                  </div>
+                  <strong>{r.name}</strong> <small style={{ color: 'var(--muted-foreground)' }}>({r.service})</small>
+                  <p style={{ margin: '4px 0 0 0', fontSize: '13px' }}>"{r.comment}"</p>
+                </div>
+                <Button variant="destructive" size="sm" onClick={() => deleteReview(r.id)}>
+                  <Trash2 size={14} /> Hapus
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </main>
   );
-            }
+          }
