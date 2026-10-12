@@ -37,7 +37,7 @@ export function SiteHeader() {
               </div>
             )}
           </div>
-          <Link to="/blog">{tr("Blog Edukasi")}</Link>
+          <Link to="/blog">{tr("Blog Edukasi")}</Link><Link to="/lacak">{tr("Lacak Transaksi")}</Link>
           <Link to="/panduan">{tr("Panduan")}</Link>
           <Link to="/tentang">{tr("Tentang Kami")}</Link>
           <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">{tr("Testimoni")} <ArrowUpRight size={13}/></a>
