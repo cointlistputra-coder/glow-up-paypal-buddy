@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ArrowDownUp, ArrowRight, MessageCircle, ShieldCheck, Info, X, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { exchangeRate, exchangeTotal, rupiah, whatsappUrl, type ExchangeMode } from '@/lib/paypal';
+import { insertTransaction, type DbTransaction } from '@/lib/supabase';
 
 export function Calculator() {
   const { tr } = usePreferences();
@@ -12,36 +13,35 @@ export function Calculator() {
   const [method, setMethod] = useState('DANA');
   const [invoice, setInvoice] = useState(false);
   const [orderId, setOrderId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const usd = Number(amount) || 0;
   const rate = exchangeRate(usd, mode);
   const total = exchangeTotal(usd, mode);
 
-  // FUNGSI SIMPAN OTOMATIS & KUNCI ID PERMANEN
-  const handleSubmit = (e: React.FormEvent) => {
+  // SIMPAN OTOMATIS KE CLOUD DATABASE SUPABASE
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 1 ID Unik Permanen yang tidak bisa diubah
+    setIsSubmitting(true);
+
     const newId = `TC-${Math.floor(10000 + Math.random() * 90000)}`;
     setOrderId(newId);
 
-    const newTransaction = {
+    const newTransaction: DbTransaction = {
       id: newId,
-      customerName: target || 'Pelanggan',
+      customer_name: target || 'Pelanggan',
       whatsapp: target,
       service: mode === 'jual' ? 'Convert PayPal' : 'Beli Saldo PayPal',
-      amountUsd: usd,
-      totalIdr: rupiah(total),
-      targetAccount: `${method} ${target}`,
+      amount_usd: usd,
+      total_idr: rupiah(total),
+      target_account: `${method} ${target}`,
       status: 'Menunggu Saldo',
-      createdAt: 'Hari ini, ' + new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' WIB',
     };
 
-    // Simpan ke database transaksi
-    try {
-      const existing = JSON.parse(localStorage.getItem('tc_all_transactions') || '[]');
-      localStorage.setItem('tc_all_transactions', JSON.stringify([newTransaction, ...existing]));
-    } catch {}
+    // Kirim langsung ke server internet Supabase
+    await insertTransaction(newTransaction);
 
+    setIsSubmitting(false);
     setInvoice(true);
   };
 
@@ -103,8 +103,8 @@ export function Calculator() {
             <output aria-live="polite">{rupiah(total)}</output>
           </div>
 
-          <Button className="order-button" type="submit">
-            <MessageCircle/>{tr("Lanjutkan ke WhatsApp")} <ArrowRight/>
+          <Button className="order-button" type="submit" disabled={isSubmitting}>
+            <MessageCircle/>{isSubmitting ? 'Menyimpan ke Cloud...' : tr("Lanjutkan ke WhatsApp")} <ArrowRight/>
           </Button>
           <p className="calc-footnote"><ShieldCheck size={12}/>{tr("Pesanan dikonfirmasi langsung oleh admin")}</p>
         </form>
@@ -117,10 +117,10 @@ export function Calculator() {
             <span className="summary-icon"><Check/></span>
             <span className="eyebrow">{tr("RINGKASAN PESANAN")}</span>
             <h2 id="order-title">{tr("Siap dikonfirmasi.")}</h2>
-            <p>{tr("Pesanan Anda telah otomatis tersimpan di sistem. Simpan ID transaksi ini untuk melacak status pesanan Anda:")}</p>
+            <p>{tr("Pesanan Anda telah otomatis tersimpan di database online. Simpan ID transaksi ini untuk melacak status pesanan:")}</p>
             <dl>
               <div style={{ backgroundColor: 'var(--accent)', padding: '10px', borderRadius: '6px' }}>
-                <dt style={{ fontWeight: 800, color: 'var(--primary)' }}>{tr("ID Transaksi Permanen")}</dt>
+                <dt style={{ fontWeight: 800, color: 'var(--primary)' }}>{tr("ID Transaksi Online")}</dt>
                 <dd style={{ fontSize: '16px', color: 'var(--primary)', fontWeight: 800 }}>{orderId}</dd>
               </div>
               <div><dt>{tr("Layanan")}</dt><dd>{mode === 'jual' ? tr("Convert PayPal") : tr("Beli Saldo PayPal")}</dd></div>
