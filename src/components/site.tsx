@@ -43,7 +43,7 @@ export function SiteHeader() {
           <span>done<span className="text-primary">cogel</span><small>PAYPAL & DIGITAL PAYMENT</small></span>
         </Link>
         
-        {/* Navigasi Komputer / Laptop */}
+        {/* Navigasi Desktop Publik */}
         <nav className="desktop-nav" aria-label={tr("Navigasi utama")}>
           <Link to="/" activeProps={{ className: 'nav-active' }} activeOptions={{exact:true}}>{tr("Beranda")}</Link>
           
@@ -60,8 +60,8 @@ export function SiteHeader() {
 
           <Link to="/lacak">{tr("Lacak Pesanan")}</Link>
           <Link to="/ulasan">{tr("Ulasan ⭐")}</Link>
-          <Link to="/berita">{tr("Berita Harian")}</Link>
-          <Link to="/blog">{tr("Blog")}</Link>
+          <Link to="/berita">{tr("Warta PayPal")}</Link>
+          <Link to="/blog">{tr("Blog Edukasi")}</Link>
           <Link to="/panduan">{tr("Panduan")}</Link>
         </nav>
 
@@ -80,7 +80,7 @@ export function SiteHeader() {
         </Button>
       </div>
 
-      {/* Navigasi Layar HP (Mobile) Lengkap dengan Semua Fitur */}
+      {/* Navigasi Layar HP (Mobile) Tanpa Tombol Admin */}
       {open && (
         <nav className="mobile-nav" aria-label={tr("Navigasi seluler")}>
           <Link to="/" onClick={() => setOpen(false)}>{tr("Beranda")}</Link>
@@ -91,13 +91,12 @@ export function SiteHeader() {
             <Star size={15} fill="#f59e0b"/> {tr("Ulasan & Rating Pelanggan")}
           </Link>
           <Link to="/berita" onClick={() => setOpen(false)} style={{ fontWeight: 800 }}>
-            <Newspaper size={15}/> {tr("Berita & Info PayPal Hari Ini")}
+            <Newspaper size={15}/> {tr("Warta & Info PayPal")}
           </Link>
           <Link to="/blog" onClick={() => setOpen(false)}>{tr("Blog Edukasi")}</Link>
           {services.map(s => <Link key={s.title} to={s.to} onClick={() => setOpen(false)}>{s.title}</Link>)}
           <Link to="/panduan" onClick={() => setOpen(false)}>{tr("Panduan")}</Link>
           <Link to="/tentang" onClick={() => setOpen(false)}>{tr("Tentang Kami")}</Link>
-          <Link to="/admin" onClick={() => setOpen(false)} style={{ color: 'var(--muted-foreground)' }}>🔐 Panel Admin</Link>
           <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">{tr("Testimoni Telegram")} <Send size={15}/></a>
         </nav>
       )}
@@ -178,7 +177,7 @@ export function SiteFooter() {
           <h4>{tr("Fitur & Layanan")}</h4>
           <Link to="/lacak">{tr("Lacak Transaksi")}</Link>
           <Link to="/ulasan">{tr("Ulasan Pelanggan")}</Link>
-          <Link to="/berita">{tr("Berita Harian")}</Link>
+          <Link to="/berita">{tr("Warta Harian")}</Link>
           {services.map(s => <Link key={s.title} to={s.to}>{s.title}</Link>)}
         </div>
         <div>
@@ -187,7 +186,7 @@ export function SiteFooter() {
           <Link to="/panduan">{tr("Master Guide")}</Link>
           <Link to="/blog">{tr("Blog Edukasi")}</Link>
           <Link to="/faq">{tr("FAQ & Ketentuan")}</Link>
-          <Link to="/admin">{tr("Panel Admin")}</Link>
+          <Link to="/lokasi">{tr("Lokasi & Kontak")}</Link>
         </div>
         <div>
           <h4>{tr("Jam Operasional")}</h4>
