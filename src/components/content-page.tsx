@@ -7,15 +7,7 @@ import {
   Clock,
   Search,
   ShieldCheck,
-  CreditCard,
-  Landmark,
-  Lock,
-  ArrowDownUp,
-  AlertTriangle,
-  Wallet,
-  RefreshCw,
-  ShoppingBag,
-  Zap,
+  Tag,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactLink, PageHeading } from '@/components/site';
@@ -26,152 +18,39 @@ type Item = {
   full?: string;
 };
 
-// Komponen Logo Resmi PayPal (Double P)
-function PaypalLogo({ size = 26 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path
-        d="M7.076 21.337H2.47a.64.64 0 0 1-.633-.74L4.94 2.802A1.14 1.14 0 0 1 6.066 1.9h7.458c3.09 0 5.438 1.408 5.105 4.512-.39 3.633-2.915 5.568-6.147 5.568h-2.19l-1.48 9.357h-1.736Z"
-        fill="#0079C1"
-      />
-      <path
-        d="M8.812 18.067H6.38a.64.64 0 0 1-.632-.74l1.865-11.8a1.14 1.14 0 0 1 1.127-.902h5.776c2.42 0 4.258 1.114 3.998 3.543-.312 2.906-2.316 4.455-4.887 4.455H11.83l-1.282 8.1h-1.736v-2.656Z"
-        fill="#00457C"
-      />
-    </svg>
-  );
-}
+// Pemetaan 7 Foto Pilihan Anda ke Judul Artikel yang Pas
+const FOTO_ARTIKEL: Record<string, string> = {
+  'Cara Menghindari Limit Paypal': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
+  'Cara Transfer Saldo PayPal ke Bank Lokal Tanpa Gagal': '/images/gambar-2.jpg', // HP Pay Now
+  'Mengenal Perbedaan Saldo G&S dan F&F': '/images/gambar-7.jpg', // Logo PayPal Resmi
+  'Tips Menang Dispute Sengketa Dana': '/images/gambar-3.jpg', // Dashboard Grafik Dispute & Refund
+  'Verifikasi PayPal Tanpa Kartu Kredit Fisik': '/images/gambar-5.jpg', // Ikon 3D Silver
+  'Mengapa Saldo Anda Tertahan (Hold) 21 Hari?': '/images/gambar-4.jpg', // Kapsul $ PayPal
+  'Update Rate Convert Done Cogel Terbaru': '/images/gambar-3.jpg', // Dashboard Finansial
+  'Bahaya Menggunakan VPN Saat Akses PayPal': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
+  'Cara Menarik Saldo Paypal Limit 180 Hari': '/images/gambar-7.jpg', // Logo PayPal Resmi
+  'Perbedaan Akun Paypal Personal Dan Bisnis': '/images/gambar-1.jpg', // Logo 3D iPad
+  'Aktivasi 2FA: Benteng Saldo Anda': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
+  'Tutorial Bayar Langganan Canva Pro & Netflix': '/images/gambar-2.jpg', // HP Pay Now
+  'Cara Ganti Nama Akun PayPal': '/images/gambar-1.jpg', // Logo 3D iPad
+  'Strategi PayPal untuk Jualan Produk Digital': '/images/gambar-3.jpg', // Dashboard Finansial
+  'Refund Policy: Hak Anda Sebagai Pengguna': '/images/gambar-3.jpg', // Dashboard Grafik Refund
+  'Mengenal Kode SWIFT Bank Nasional': '/images/gambar-2.jpg', // HP Pay Now Transfer
+  'Cara Mengamankan Akun PayPal dari Hacker': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
+  'Pentingnya Menjaga Reputasi & Trust Score Akun': '/images/gambar-5.jpg', // Ikon 3D Silver
+  'Perbedaan Akun Personal, Premier, dan Business': '/images/gambar-1.jpg', // Logo 3D iPad
+  'Cara Mencairkan Saldo Paypal Receh': '/images/gambar-4.jpg', // Kapsul $ PayPal
+};
 
-// Konfigurasi 20 banner khusus PayPal sesuai topik artikel
-const THEMES = [
-  { label: 'AKUN & LIMIT', bg: 'linear-gradient(135deg, #001C38 0%, #003087 100%)', icon: ShieldCheck, badge: 'SISTEM KEAMANAN' },
-  { label: 'BANK & E-WALLET', bg: 'linear-gradient(135deg, #003087 0%, #0079C1 100%)', icon: Landmark, badge: 'PENARIKAN DANA' },
-  { label: 'G&S vs F&F', bg: 'linear-gradient(135deg, #0B2545 0%, #134074 100%)', icon: ArrowDownUp, badge: 'METODE TRANSFER' },
-  { label: 'DISPUTE RESOLUTION', bg: 'linear-gradient(135deg, #1D2A44 0%, #3B5360 100%)', icon: AlertTriangle, badge: 'PUSAT RESOLUSI' },
-  { label: 'VERIFIKASI KARTU', bg: 'linear-gradient(135deg, #002B49 0%, #005F9E 100%)', icon: CreditCard, badge: 'VCC & DEBIT' },
-  { label: 'HOLD 21 HARI', bg: 'linear-gradient(135deg, #1E1B4B 0%, #312E81 100%)', icon: Clock, badge: 'DANA TERTUNDA' },
-  { label: 'KURS & CONVERT', bg: 'linear-gradient(135deg, #064E3B 0%, #047857 100%)', icon: Zap, badge: 'USD ⇄ IDR' },
-  { label: 'KEAMANAN IP & VPN', bg: 'linear-gradient(135deg, #450A0A 0%, #991B1B 100%)', icon: Lock, badge: 'CYBER PROTECTION' },
-  { label: 'LIMIT 180 HARI', bg: 'linear-gradient(135deg, #31111D 0%, #701A75 100%)', icon: RefreshCw, badge: 'PEMULIHAN WD' },
-  { label: 'PERSONAL vs BISNIS', bg: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', icon: Wallet, badge: 'TIPE AKUN' },
-  { label: 'AUTENTIKASI 2FA', bg: 'linear-gradient(135deg, #003087 0%, #0284C7 100%)', icon: Lock, badge: 'KEAMANAN 2 LANGKAH' },
-  { label: 'JASA BAYAR GLOBAL', bg: 'linear-gradient(135deg, #1E1B4B 0%, #4338CA 100%)', icon: ShoppingBag, badge: 'CHECKOUT LUAR NEGERI' },
-  { label: 'PROFIL & DATA', bg: 'linear-gradient(135deg, #134E4A 0%, #0F766E 100%)', icon: Landmark, badge: 'IDENTITAS LEGAL' },
-  { label: 'PRODUK DIGITAL', bg: 'linear-gradient(135deg, #022C22 0%, #059669 100%)', icon: Zap, badge: 'SELLER DIGITAL' },
-  { label: 'REFUND RESMI', bg: 'linear-gradient(135deg, #1C1917 0%, #44403C 100%)', icon: RefreshCw, badge: 'PENGEMBALIAN DANA' },
-  { label: 'SWIFT CODE INDONESIA', bg: 'linear-gradient(135deg, #0C4A6E 0%, #0284C7 100%)', icon: Landmark, badge: 'BCA • MANDIRI • BRI' },
-  { label: 'ANTI-PHISHING', bg: 'linear-gradient(135deg, #450A0A 0%, #7F1D1D 100%)', icon: ShieldCheck, badge: 'PROTEKSI DINI' },
-  { label: 'TRUST SCORE', bg: 'linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%)', icon: Zap, badge: 'SKOR AKUN' },
-  { label: 'UPGRADE AKUN', bg: 'linear-gradient(135deg, #14532D 0%, #16A34A 100%)', icon: Wallet, badge: 'PREMIER & MERCHANT' },
-  { label: 'SALDO RECEH', bg: 'linear-gradient(135deg, #003087 0%, #059669 100%)', icon: ArrowDownUp, badge: 'CAIR KE DANA & OVO' },
+const DEFAULT_FALLBACK_IMAGES = [
+  '/images/gambar-1.jpg',
+  '/images/gambar-2.jpg',
+  '/images/gambar-3.jpg',
+  '/images/gambar-4.jpg',
+  '/images/gambar-5.jpg',
+  '/images/gambar-6.jpg',
+  '/images/gambar-7.jpg',
 ];
-
-// Banner Grafis Khusus dengan Logo PayPal
-function BlogBannerGraphic({ index, title }: { index: number; title: string }) {
-  const theme = THEMES[index % THEMES.length]!;
-  const IconComponent = theme.icon;
-
-  return (
-    <div
-      style={{
-        height: '185px',
-        width: '100%',
-        background: theme.bg,
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '18px',
-        color: '#ffffff',
-        overflow: 'hidden',
-        borderBottom: '1px solid rgba(255,255,255,0.08)',
-      }}
-    >
-      {/* Pola Lingkaran Background */}
-      <div
-        style={{
-          position: 'absolute',
-          right: '-25px',
-          bottom: '-25px',
-          width: '150px',
-          height: '150px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%)',
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Bagian Atas: Logo PayPal + Badge Topik */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', zIndex: 1 }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            backgroundColor: '#ffffff',
-            padding: '5px 10px',
-            borderRadius: '9999px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-          }}
-        >
-          <PaypalLogo size={20} />
-          <span style={{ fontSize: '11px', fontWeight: 800, color: '#003087', letterSpacing: '-0.2px' }}>
-            PayPal
-          </span>
-        </div>
-
-        <span
-          style={{
-            fontSize: '9px',
-            fontWeight: 700,
-            letterSpacing: '0.5px',
-            backgroundColor: 'rgba(255,255,255,0.15)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            padding: '4px 9px',
-            borderRadius: '4px',
-            backdropFilter: 'blur(4px)',
-          }}
-        >
-          {theme.badge}
-        </span>
-      </div>
-
-      {/* Bagian Bawah: Ikon Topik + Judul Kategori */}
-      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', zIndex: 1 }}>
-        <div>
-          <span
-            style={{
-              fontSize: '10px',
-              fontWeight: 700,
-              color: 'rgba(255,255,255,0.7)',
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-            }}
-          >
-            {theme.label}
-          </span>
-          <div style={{ fontSize: '14px', fontWeight: 800, color: '#fff', marginTop: '2px', maxWidth: '240px' }}>
-            Done Cogel Guide
-          </div>
-        </div>
-
-        <div
-          style={{
-            width: '42px',
-            height: '42px',
-            borderRadius: '50%',
-            backgroundColor: 'rgba(255,255,255,0.15)',
-            display: 'grid',
-            placeItems: 'center',
-            border: '1px solid rgba(255,255,255,0.2)',
-          }}
-        >
-          <IconComponent size={22} style={{ color: '#ffffff' }} />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export function ContentPage({
   title,
@@ -188,18 +67,14 @@ export function ContentPage({
 }) {
   const { tr } = usePreferences();
   const [query, setQuery] = useState('');
-  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ item: Item; img: string } | null>(null);
 
-  const filtered = items
-    .map((item, originalIndex) => ({ item, originalIndex }))
-    .filter(({ item }) =>
-      `${tr(item.t)} ${tr(item.d ?? '')}`.toLocaleLowerCase().includes(query.toLocaleLowerCase())
-    );
-
-  const activeArticle = selectedIdx !== null ? items[selectedIdx] : null;
+  const filtered = items.filter((i) =>
+    `${tr(i.t)} ${tr(i.d ?? '')}`.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+  );
 
   return (
-    <main className="site-width section">
+    <main className="site-width section" style={{ minHeight: '80vh' }}>
       <PageHeading eyebrow={tr(eyebrow)} title={tr(title)} description={tr(description)} />
 
       {!inquiry && (
@@ -219,7 +94,7 @@ export function ContentPage({
             type="search"
             style={{ paddingLeft: '42px', width: '100%' }}
             aria-label={tr('Cari artikel')}
-            placeholder={tr('Cari artikel, limit, atau panduan PayPal…')}
+            placeholder={tr('Cari artikel atau panduan PayPal…')}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -227,66 +102,116 @@ export function ContentPage({
       )}
 
       <div className="content-grid">
-        {filtered.map(({ item, originalIndex }) => (
-          <article
-            className="content-item"
-            key={tr(item.t)}
-            style={{ overflow: 'hidden', padding: 0, borderRadius: '8px', border: '1px solid var(--border)' }}
-          >
-            {/* Banner Logo PayPal Khusus untuk Blog */}
-            {!inquiry && <BlogBannerGraphic index={originalIndex} title={tr(item.t)} />}
+        {filtered.map((item, idx) => {
+          // Pilih gambar yang cocok sesuai judul artikel
+          const imageSrc =
+            FOTO_ARTIKEL[item.t] || DEFAULT_FALLBACK_IMAGES[idx % DEFAULT_FALLBACK_IMAGES.length];
 
-            <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1, gap: '10px' }}>
+          return (
+            <article
+              className="content-item"
+              key={tr(item.t)}
+              style={{
+                overflow: 'hidden',
+                padding: 0,
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                backgroundColor: 'var(--card)',
+                boxShadow: 'var(--shadow)',
+              }}
+            >
               {!inquiry && (
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    fontSize: '10px',
-                    color: 'var(--muted-foreground)',
-                  }}
-                >
-                  <Clock size={12} />
-                  <span>{tr('4 min baca')}</span>
-                  <span>•</span>
-                  <span>{THEMES[originalIndex % THEMES.length]?.badge}</span>
+                <div style={{ height: '185px', width: '100%', position: 'relative', overflow: 'hidden' }}>
+                  <img
+                    src={imageSrc}
+                    alt={tr(item.t)}
+                    loading="lazy"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.3s ease',
+                    }}
+                    onError={(e) => {
+                      // Fallback ke banner cadangan jika file belum diunggah
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80';
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      backgroundColor: 'rgba(0, 48, 135, 0.85)',
+                      color: '#ffffff',
+                      fontSize: '9px',
+                      fontWeight: 800,
+                      padding: '4px 10px',
+                      borderRadius: '4px',
+                      backdropFilter: 'blur(4px)',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    PAYPAL PANDUAN
+                  </span>
                 </div>
               )}
 
-              {inquiry && <BookOpen size={24} className="text-primary" />}
-
-              <h3 style={{ fontSize: '16px', lineHeight: 1.35, fontWeight: 700 }}>{tr(item.t)}</h3>
-
-              <p style={{ fontSize: '12px', color: 'var(--muted-foreground)', lineHeight: 1.8 }}>
-                {item.d ? tr(item.d) : tr(item.full ?? '').slice(0, 140) + '…'}
-              </p>
-
-              <div style={{ marginTop: 'auto', paddingTop: '8px' }}>
-                {inquiry ? (
-                  <ContactLink service={tr(item.t)} label="Hubungi Admin" />
-                ) : (
-                  <Button
-                    variant="link"
-                    style={{ padding: 0, fontWeight: 700, fontSize: '11px' }}
-                    onClick={() => setSelectedIdx(originalIndex)}
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1, gap: '10px' }}>
+                {!inquiry && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      fontSize: '10px',
+                      color: 'var(--muted-foreground)',
+                    }}
                   >
-                    {tr('Baca selengkapnya')} <ArrowUpRight size={14} style={{ marginLeft: '4px' }} />
-                  </Button>
+                    <Clock size={12} />
+                    <span>4 min baca</span>
+                    <span>•</span>
+                    <span>Terverifikasi</span>
+                  </div>
                 )}
+
+                {inquiry && <BookOpen size={24} className="text-primary" />}
+
+                <h3 style={{ fontSize: '16px', lineHeight: 1.35, fontWeight: 700, margin: 0 }}>
+                  {tr(item.t)}
+                </h3>
+
+                <p style={{ fontSize: '12px', color: 'var(--muted-foreground)', lineHeight: 1.8, margin: 0 }}>
+                  {item.d ? tr(item.d) : tr(item.full ?? '').slice(0, 140) + '…'}
+                </p>
+
+                <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
+                  {inquiry ? (
+                    <ContactLink service={tr(item.t)} label="Hubungi Admin" />
+                  ) : (
+                    <Button
+                      variant="link"
+                      style={{ padding: 0, fontWeight: 700, fontSize: '11px' }}
+                      onClick={() => setSelectedItem({ item, img: imageSrc })}
+                    >
+                      {tr('Baca selengkapnya')} <ArrowUpRight size={14} style={{ marginLeft: '4px' }} />
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
 
       {filtered.length === 0 && (
         <p className="subtle-note">{tr('Tidak ada artikel yang sesuai dengan pencarian Anda.')}</p>
       )}
 
-      {/* Modal Popup Saat Artikel Diklik */}
-      {activeArticle && selectedIdx !== null && (
-        <div className="modal-backdrop" onClick={() => setSelectedIdx(null)}>
+      {/* Modal Popup Saat Artikel Diklik (Menampilkan Foto Pilihan & Isi Rinci) */}
+      {selectedItem && (
+        <div className="modal-backdrop" onClick={() => setSelectedItem(null)}>
           <article
             role="dialog"
             aria-modal="true"
@@ -295,24 +220,35 @@ export function ContentPage({
             style={{ maxWidth: '800px', padding: 0, overflow: 'hidden' }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Banner Header di Dalam Modal */}
-            <BlogBannerGraphic index={selectedIdx} title={tr(activeArticle.t)} />
-
-            <div style={{ padding: '30px' }}>
+            {/* Header Gambar di Dalam Modal */}
+            <div style={{ width: '100%', height: '240px', position: 'relative' }}>
+              <img
+                src={selectedItem.img}
+                alt={tr(selectedItem.item.t)}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
               <Button
                 variant="ghost"
                 size="icon"
                 className="modal-close"
                 aria-label={tr('Tutup artikel')}
-                onClick={() => setSelectedIdx(null)}
-                style={{ position: 'absolute', right: '14px', top: '14px', color: '#fff', backgroundColor: 'rgba(0,0,0,0.4)' }}
+                onClick={() => setSelectedItem(null)}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '12px',
+                  color: '#fff',
+                  backgroundColor: 'rgba(0,0,0,0.5)',
+                }}
               >
                 <X />
               </Button>
+            </div>
 
+            <div style={{ padding: '30px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                 <span className="eyebrow" style={{ margin: 0 }}>
-                  {THEMES[selectedIdx % THEMES.length]?.badge}
+                  EDUKASI & KEAMANAN PAYPAL
                 </span>
                 <span style={{ color: 'var(--muted-foreground)', fontSize: '11px' }}>•</span>
                 <span style={{ color: 'var(--muted-foreground)', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}>
@@ -321,11 +257,11 @@ export function ContentPage({
               </div>
 
               <h2 id="article-title" style={{ fontSize: '24px', lineHeight: 1.3, marginBottom: '18px' }}>
-                {tr(activeArticle.t)}
+                {tr(selectedItem.item.t)}
               </h2>
 
               <div style={{ fontSize: '13px', lineHeight: 1.95, color: 'var(--foreground)' }}>
-                <p style={{ whiteSpace: 'pre-line' }}>{tr(activeArticle.full ?? activeArticle.d ?? '')}</p>
+                <p style={{ whiteSpace: 'pre-line' }}>{tr(selectedItem.item.full ?? selectedItem.item.d ?? '')}</p>
               </div>
 
               {/* Box Call To Action WhatsApp */}
@@ -353,7 +289,7 @@ export function ContentPage({
                   )}
                 </p>
                 <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
-                  <ContactLink service={tr(activeArticle.t)} label="Konsultasikan via WhatsApp" />
+                  <ContactLink service={tr(selectedItem.item.t)} label="Konsultasikan via WhatsApp" />
                 </div>
               </div>
             </div>
@@ -362,4 +298,4 @@ export function ContentPage({
       )}
     </main>
   );
-            }
+}
