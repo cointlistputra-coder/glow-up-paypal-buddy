@@ -68,7 +68,7 @@ const THEMES = [
 
 // Banner Grafis Khusus dengan Logo PayPal
 function BlogBannerGraphic({ index, title }: { index: number; title: string }) {
-  const theme = THEMES[index % THEMES.length];
+  const theme = THEMES[index % THEMES.length]!;
   const IconComponent = theme.icon;
 
   return (
@@ -250,7 +250,7 @@ export function ContentPage({
                   <Clock size={12} />
                   <span>{tr('4 min baca')}</span>
                   <span>•</span>
-                  <span>{THEMES[originalIndex % THEMES.length].badge}</span>
+                  <span>{THEMES[originalIndex % THEMES.length]?.badge}</span>
                 </div>
               )}
 
@@ -312,7 +312,7 @@ export function ContentPage({
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                 <span className="eyebrow" style={{ margin: 0 }}>
-                  {THEMES[selectedIdx % THEMES.length].badge}
+                  {THEMES[selectedIdx % THEMES.length]?.badge}
                 </span>
                 <span style={{ color: 'var(--muted-foreground)', fontSize: '11px' }}>•</span>
                 <span style={{ color: 'var(--muted-foreground)', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}>

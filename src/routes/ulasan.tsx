@@ -305,7 +305,7 @@ function UlasanPage() {
                 <strong style={{ fontSize: '13px', display: 'block' }}>{r.name}</strong>
                 <span style={{ fontSize: '10px', color: 'var(--primary)', fontWeight: 600 }}>{r.service}</span>
               </div>
-              <ShieldCheck size={18} style={{ color: '#059669' }} title="Ulasan Terverifikasi" />
+              <ShieldCheck size={18} style={{ color: '#059669' }} aria-label="Ulasan Terverifikasi" />
             </div>
           </div>
         ))}
