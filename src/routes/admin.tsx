@@ -10,16 +10,12 @@ import {
   Star,
   Trash2,
   PlusCircle,
-  DollarSign,
-  Activity,
-  Users,
-  Save,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { pageMetadata } from '@/lib/metadata';
 
 export const Route = createFileRoute('/admin')({
-  head: () => pageMetadata('Admin Dashboard', 'Panel kelola transaksi, ulasan, dan live stock TransferCepat.'),
+  head: () => pageMetadata('Admin Dashboard', 'Panel kelola transaksi dan ulasan TransferCepat.'),
   component: AdminPage,
 });
 
@@ -49,20 +45,9 @@ const ADMIN_PASSWORD = 'admin123';
 function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
-  const [activeTab, setActiveTab] = useState<'transaksi' | 'ulasan' | 'stats'>('transaksi');
+  const [activeTab, setActiveTab] = useState<'transaksi' | 'ulasan'>('transaksi');
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
-
-  // Form Pengaturan Stock & Live Stats (Bisa diatur Admin)
-  const [liveStats, setLiveStats] = useState({
-    stockAvailable: '5.240',
-    saldoSold: '168.450',
-    successTx: '14.800+',
-    activeMembers: '6.200+',
-    avgProcess: '5–15 Menit',
-    cleanFunds: '100% Legal & Clean',
-  });
-  const [statsSavedMsg, setStatsSavedMsg] = useState(false);
 
   // Form Tambah Ulasan Manual
   const [showAddReview, setShowAddReview] = useState(false);
@@ -71,6 +56,7 @@ function AdminPage() {
   const [revService, setRevService] = useState('Convert PayPal');
   const [revComment, setRevComment] = useState('');
 
+  // Memuat transaksi & ulasan tersimpan
   useEffect(() => {
     try {
       const savedTx = localStorage.getItem('tc_all_transactions');
@@ -78,9 +64,6 @@ function AdminPage() {
 
       const savedRev = localStorage.getItem('tc_customer_reviews');
       if (savedRev) setReviews(JSON.parse(savedRev));
-
-      const savedStats = localStorage.getItem('tc_site_stats');
-      if (savedStats) setLiveStats(JSON.parse(savedStats));
     } catch {}
   }, []);
 
@@ -125,14 +108,6 @@ function AdminPage() {
     setShowAddReview(false);
   };
 
-  // Simpan Pengaturan Stock & Live Stats
-  const handleSaveStats = (e: React.FormEvent) => {
-    e.preventDefault();
-    localStorage.setItem('tc_site_stats', JSON.stringify(liveStats));
-    setStatsSavedMsg(true);
-    setTimeout(() => setStatsSavedMsg(false), 3000);
-  };
-
   if (!isAuthenticated) {
     return (
       <main className="site-width section" style={{ minHeight: '70vh', display: 'grid', placeItems: 'center' }}>
@@ -170,16 +145,13 @@ function AdminPage() {
         </Button>
       </div>
 
-      {/* Tab Navigasi Admin: Transaksi, Ulasan, dan Pengaturan Stock */}
+      {/* Tab Navigasi Admin: Fokus Transaksi & Ulasan */}
       <div style={{ display: 'flex', gap: '10px', marginBottom: '25px', flexWrap: 'wrap' }}>
         <Button variant={activeTab === 'transaksi' ? 'default' : 'outline'} onClick={() => setActiveTab('transaksi')}>
           Kelola Transaksi ({transactions.length})
         </Button>
         <Button variant={activeTab === 'ulasan' ? 'default' : 'outline'} onClick={() => setActiveTab('ulasan')}>
           Kelola Ulasan ({reviews.length})
-        </Button>
-        <Button variant={activeTab === 'stats' ? 'default' : 'outline'} onClick={() => setActiveTab('stats')} style={{ borderColor: '#059669', color: activeTab === 'stats' ? '#fff' : '#059669' }}>
-          💵 Atur Stock & Live Stats
         </Button>
       </div>
 
@@ -257,94 +229,6 @@ function AdminPage() {
           </div>
         </div>
       )}
-
-      {/* TAB 3: ATUR STOCK DOLLAR & LIVE STATISTIK BERANDA */}
-      {activeTab === 'stats' && (
-        <form onSubmit={handleSaveStats} style={{ maxWidth: '640px', padding: '26px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div>
-            <h3 style={{ fontSize: '18px', fontWeight: 800, margin: '0 0 4px 0' }}>Atur Angka Live Stock & Statistik Beranda</h3>
-            <p style={{ fontSize: '12px', color: 'var(--muted-foreground)', margin: 0 }}>Ubah angka di bawah ini, lalu klik Simpan. Angka di halaman utama web akan otomatis langsung terupdate!</p>
-          </div>
-
-          {statsSavedMsg && (
-            <div style={{ padding: '10px 16px', backgroundColor: 'rgba(5, 150, 105, 0.15)', color: '#059669', borderRadius: '6px', fontSize: '12px', fontWeight: 700 }}>
-              ✓ Data Live Stock berhasil disimpan dan sudah aktif di beranda!
-            </div>
-          )}
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
-            <div>
-              <label style={{ fontSize: '11px', fontWeight: 700, display: 'block', marginBottom: '4px' }}>Stock Dollar Tersedia ($ USD):</label>
-              <input
-                required
-                value={liveStats.stockAvailable}
-                onChange={(e) => setLiveStats({ ...liveStats, stockAvailable: e.target.value })}
-                placeholder="Contoh: 5.240"
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)', fontWeight: 700 }}
-              />
-            </div>
-
-            <div>
-              <label style={{ fontSize: '11px', fontWeight: 700, display: 'block', marginBottom: '4px' }}>Total Saldo Terjual ($ USD):</label>
-              <input
-                required
-                value={liveStats.saldoSold}
-                onChange={(e) => setLiveStats({ ...liveStats, saldoSold: e.target.value })}
-                placeholder="Contoh: 168.450"
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)', fontWeight: 700 }}
-              />
-            </div>
-
-            <div>
-              <label style={{ fontSize: '11px', fontWeight: 700, display: 'block', marginBottom: '4px' }}>Jumlah Transaksi Sukses:</label>
-              <input
-                required
-                value={liveStats.successTx}
-                onChange={(e) => setLiveStats({ ...liveStats, successTx: e.target.value })}
-                placeholder="Contoh: 14.800+"
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)', fontWeight: 700 }}
-              />
-            </div>
-
-            <div>
-              <label style={{ fontSize: '11px', fontWeight: 700, display: 'block', marginBottom: '4px' }}>Jumlah Member Aktif:</label>
-              <input
-                required
-                value={liveStats.activeMembers}
-                onChange={(e) => setLiveStats({ ...liveStats, activeMembers: e.target.value })}
-                placeholder="Contoh: 6.200+"
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)', fontWeight: 700 }}
-              />
-            </div>
-
-            <div>
-              <label style={{ fontSize: '11px', fontWeight: 700, display: 'block', marginBottom: '4px' }}>Rata-rata Proses:</label>
-              <input
-                required
-                value={liveStats.avgProcess}
-                onChange={(e) => setLiveStats({ ...liveStats, avgProcess: e.target.value })}
-                placeholder="Contoh: 5–15 Menit"
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)', fontWeight: 700 }}
-              />
-            </div>
-
-            <div>
-              <label style={{ fontSize: '11px', fontWeight: 700, display: 'block', marginBottom: '4px' }}>Status Saldo Legalitas:</label>
-              <input
-                required
-                value={liveStats.cleanFunds}
-                onChange={(e) => setLiveStats({ ...liveStats, cleanFunds: e.target.value })}
-                placeholder="Contoh: 100% Legal & Clean"
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid var(--border)', fontWeight: 700 }}
-              />
-            </div>
-          </div>
-
-          <Button type="submit" size="lg" style={{ alignSelf: 'flex-start', fontWeight: 700, backgroundColor: '#059669', color: '#fff', marginTop: '10px' }}>
-            <Save size={16} /> Simpan Data Live Sekarang
-          </Button>
-        </form>
-      )}
     </main>
   );
-                }
+}
