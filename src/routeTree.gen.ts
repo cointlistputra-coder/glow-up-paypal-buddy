@@ -10,10 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BengkelRouteImport } from './routes/bengkel'
+import { Route as BeritaRouteImport } from './routes/berita'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as JasaBayarRouteImport } from './routes/jasa-bayar'
+import { Route as LacakRouteImport } from './routes/lacak'
 import { Route as LaporRouteImport } from './routes/lapor'
 import { Route as LokasiRouteImport } from './routes/lokasi'
 import { Route as PanduanRouteImport } from './routes/panduan'
@@ -27,9 +30,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BengkelRoute = BengkelRouteImport.update({
   id: '/bengkel',
   path: '/bengkel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeritaRoute = BeritaRouteImport.update({
+  id: '/berita',
+  path: '/berita',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -45,6 +58,11 @@ const FaqRoute = FaqRouteImport.update({
 const JasaBayarRoute = JasaBayarRouteImport.update({
   id: '/jasa-bayar',
   path: '/jasa-bayar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LacakRoute = LacakRouteImport.update({
+  id: '/lacak',
+  path: '/lacak',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LaporRoute = LaporRouteImport.update({
@@ -85,10 +103,13 @@ const UlasanRoute = UlasanRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/bengkel': typeof BengkelRoute
+  '/berita': typeof BeritaRoute
   '/blog': typeof BlogRoute
   '/faq': typeof FaqRoute
   '/jasa-bayar': typeof JasaBayarRoute
+  '/lacak': typeof LacakRoute
   '/lapor': typeof LaporRoute
   '/lokasi': typeof LokasiRoute
   '/panduan': typeof PanduanRoute
@@ -99,10 +120,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/bengkel': typeof BengkelRoute
+  '/berita': typeof BeritaRoute
   '/blog': typeof BlogRoute
   '/faq': typeof FaqRoute
   '/jasa-bayar': typeof JasaBayarRoute
+  '/lacak': typeof LacakRoute
   '/lapor': typeof LaporRoute
   '/lokasi': typeof LokasiRoute
   '/panduan': typeof PanduanRoute
@@ -114,10 +138,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/bengkel': typeof BengkelRoute
+  '/berita': typeof BeritaRoute
   '/blog': typeof BlogRoute
   '/faq': typeof FaqRoute
   '/jasa-bayar': typeof JasaBayarRoute
+  '/lacak': typeof LacakRoute
   '/lapor': typeof LaporRoute
   '/lokasi': typeof LokasiRoute
   '/panduan': typeof PanduanRoute
@@ -130,10 +157,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/bengkel'
+    | '/berita'
     | '/blog'
     | '/faq'
     | '/jasa-bayar'
+    | '/lacak'
     | '/lapor'
     | '/lokasi'
     | '/panduan'
@@ -144,10 +174,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/bengkel'
+    | '/berita'
     | '/blog'
     | '/faq'
     | '/jasa-bayar'
+    | '/lacak'
     | '/lapor'
     | '/lokasi'
     | '/panduan'
@@ -158,10 +191,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/bengkel'
+    | '/berita'
     | '/blog'
     | '/faq'
     | '/jasa-bayar'
+    | '/lacak'
     | '/lapor'
     | '/lokasi'
     | '/panduan'
@@ -173,10 +209,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   BengkelRoute: typeof BengkelRoute
+  BeritaRoute: typeof BeritaRoute
   BlogRoute: typeof BlogRoute
   FaqRoute: typeof FaqRoute
   JasaBayarRoute: typeof JasaBayarRoute
+  LacakRoute: typeof LacakRoute
   LaporRoute: typeof LaporRoute
   LokasiRoute: typeof LokasiRoute
   PanduanRoute: typeof PanduanRoute
@@ -195,11 +234,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bengkel': {
       id: '/bengkel'
       path: '/bengkel'
       fullPath: '/bengkel'
       preLoaderRoute: typeof BengkelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/berita': {
+      id: '/berita'
+      path: '/berita'
+      fullPath: '/berita'
+      preLoaderRoute: typeof BeritaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -221,6 +274,13 @@ declare module '@tanstack/react-router' {
       path: '/jasa-bayar'
       fullPath: '/jasa-bayar'
       preLoaderRoute: typeof JasaBayarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lacak': {
+      id: '/lacak'
+      path: '/lacak'
+      fullPath: '/lacak'
+      preLoaderRoute: typeof LacakRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lapor': {
@@ -277,10 +337,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   BengkelRoute: BengkelRoute,
+  BeritaRoute: BeritaRoute,
   BlogRoute: BlogRoute,
   FaqRoute: FaqRoute,
   JasaBayarRoute: JasaBayarRoute,
+  LacakRoute: LacakRoute,
   LaporRoute: LaporRoute,
   LokasiRoute: LokasiRoute,
   PanduanRoute: PanduanRoute,
