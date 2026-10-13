@@ -13,25 +13,38 @@ import {
   Users,
   CheckCircle2,
   Clock,
-  Wrench,
-  Lock,
-  MessageCircle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ServicesSection, TelegramSection } from '@/components/site';
 import { Calculator } from '@/components/calculator';
-import { TELEGRAM_URL, whatsappUrl } from '@/lib/paypal';
+import { TELEGRAM_URL } from '@/lib/paypal';
 import hero from '@/assets/payments-hero.jpg';
 import content from '@/data/source-content.json';
 
 export const Route = createFileRoute('/')({
   head: () => ({
     meta: [
-      { title: 'Done Cogel — Convert PayPal, Jasa Bayar, Pembuatan Akun & WD Limit 180 Hari' },
-      { name: 'description', content: 'Convert saldo PayPal ke DANA/BCA, jasa bayar belanja luar negeri, dan pendampingan pencairan akun limit permanen 180 hari. Aman, legal, dan transparan.' },
-      { property: 'og:title', content: 'Done Cogel — Solusi PayPal & Pembayaran Digital Terpercaya' },
-      { property: 'og:description', content: 'Convert kilat 5-15 menit, stok dollar live, dan spesialis pencairan akun limit 180 hari.' },
+      {
+        title: 'Jasa Convert Saldo PayPal & Mencairkan PayPal ke DANA / BCA — TransferCepat',
+      },
+      {
+        name: 'description',
+        content:
+          'Jasa convert saldo PayPal tercepat 5-15 menit cair ke DANA, BCA, OVO, Mandiri, BRI. Layanan mencairkan paypal, jasa WD limit permanen 180 hari, dan jasa bayar terpercaya sejak 2018.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'convert, jasa convert paypal, jasa wd, jasa wd paypal, mencairkan paypal, cairkan saldo paypal, akun paypal limit permanen, cara menarik saldo paypal limit 180 hari, jual beli saldo paypal, paypal ke dana, paypal ke bca, rate convert paypal tertinggi, jasa bayar paypal, transfercepat, done cogel',
+      },
+      { property: 'og:title', content: 'TransferCepat — Jasa Convert Saldo & Mencairkan PayPal Terpercaya' },
+      {
+        property: 'og:description',
+        content:
+          'Convert saldo PayPal ke DANA, GoPay, OVO, dan Bank Lokal dengan rate terbaik. Proses kilat dan 100% aman.',
+      },
       { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://transfercepat.com' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
   }),
@@ -41,7 +54,7 @@ export const Route = createFileRoute('/')({
 function Home() {
   const { tr } = usePreferences();
 
-  // State Statistik Live yang bisa diatur oleh Admin
+  // Data Statistik Live yang Terhubung ke Admin
   const [stats, setStats] = useState({
     stockAvailable: '5.240',
     saldoSold: '168.450',
@@ -54,22 +67,27 @@ function Home() {
   useEffect(() => {
     try {
       const savedStats = localStorage.getItem('tc_site_stats');
-      if (savedStats) {
-        setStats(JSON.parse(savedStats));
-      }
+      if (savedStats) setStats(JSON.parse(savedStats));
     } catch {}
   }, []);
 
   return (
     <>
-      {/* HERO SECTION */}
+      {/* HERO SECTION KAYA KATA KUNCI SEO */}
       <section className="home-hero">
-        <img className="hero-image" src={hero} alt="Ponsel pembayaran digital dan kartu biru" width={1536} height={1024} fetchPriority="high" />
+        <img
+          className="hero-image"
+          src={hero}
+          alt="Jasa convert saldo PayPal dan mencairkan PayPal ke rekening bank lokal"
+          width={1536}
+          height={1024}
+          fetchPriority="high"
+        />
         <div className="site-width hero-inner">
           <div className="hero-copy">
             <span className="hero-badge">
               <ShieldCheck size={13} />
-              {tr("PARTNER TRANSAKSI DIGITAL ANDA")}
+              {tr("JASA CONVERT & PENCAIRAN PAYPAL TERPERCAYA")}
             </span>
             <h1>
               {tr("Solusi PayPal Anda.")}<br />
@@ -79,7 +97,7 @@ function Home() {
               </span>
             </h1>
             <p>
-              {tr("Convert saldo, bayar belanja global, jasa WD limit permanen 180 hari, hingga pembuatan akun PayPal. Semua lebih praktis bersama Done Cogel.")}
+              {tr("Convert saldo PayPal ke DANA, BCA, dan e-wallet lokal. Layanan mencairkan PayPal, pembayaran transaksi global, hingga pembuatan akun resmi sejak 2018.")}
             </p>
             <div className="hero-actions">
               <Button asChild size="lg">
@@ -102,10 +120,10 @@ function Home() {
         </div>
       </section>
 
-      {/* STRIP LOGO BANK & E-WALLET */}
+      {/* STRIP REKENING & E-WALLET TUJUAN */}
       <div className="payment-strip">
         <div className="site-width payment-inner">
-          <span>{tr("Cair langsung ke bank")}<br />{tr("dan e-wallet favorit Anda")}</span>
+          <span>{tr("Mencairkan PayPal ke bank")}<br />{tr("dan e-wallet favorit Anda")}</span>
           <div className="payment-logos">
             <span className="payment-blue">BCA</span>
             <span>mandiri</span>
@@ -119,20 +137,17 @@ function Home() {
         </div>
       </div>
 
-      {/* ============================================================ */}
-      {/* WIDGET LIVE STATS, STOCK DOLLAR & REPUTASI (DAPAT DIATUR ADMIN) */}
-      {/* ============================================================ */}
-      <section className="site-width" style={{ marginTop: '45px', marginBottom: '25px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px', flexWrap: 'wrap', gap: '10px' }}>
+      {/* WIDGET LIVE STOCK & DATA FINANSIAL HARI INI */}
+      <section className="site-width" style={{ marginTop: '40px', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: 'rgba(5, 150, 105, 0.12)', color: '#059669', padding: '6px 14px', borderRadius: '9999px', fontSize: '11px', fontWeight: 800 }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#059669', display: 'inline-block', animation: 'pulse 1.5s infinite' }} />
             LIVE STOCK & DATA FINANSIAL HARI INI
           </div>
-          <span style={{ fontSize: '11px', color: 'var(--muted-foreground)' }}>Pembaruan real-time sistem</span>
+          <span style={{ fontSize: '11px', color: 'var(--muted-foreground)' }}>Update real-time sistem</span>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '14px' }}>
-          {/* Card 1: Stock Tersedia */}
           <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#059669', marginBottom: '8px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700 }}>STOCK TERSEDIA</span>
@@ -144,7 +159,6 @@ function Home() {
             <span style={{ fontSize: '10px', color: '#059669', fontWeight: 600 }}>● Ready Kirim Instan</span>
           </div>
 
-          {/* Card 2: Saldo Terjual */}
           <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'var(--primary)', marginBottom: '8px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700 }}>SALDO TERJUAL</span>
@@ -153,10 +167,9 @@ function Home() {
             <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
               ${stats.saldoSold} <small style={{ fontSize: '11px', color: 'var(--muted-foreground)' }}>USD</small>
             </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Volume Akumulasi</span>
+            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Total Terakumulasi</span>
           </div>
 
-          {/* Card 3: Transaksi Sukses */}
           <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#0284c7', marginBottom: '8px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700 }}>TRANSAKSI SUKSES</span>
@@ -165,10 +178,9 @@ function Home() {
             <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
               {stats.successTx}
             </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Tercatat Sejak 2018</span>
+            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Convert & Jasa WD</span>
           </div>
 
-          {/* Card 4: Member Aktif */}
           <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#8b5cf6', marginBottom: '8px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700 }}>MEMBER AKTIF</span>
@@ -177,10 +189,9 @@ function Home() {
             <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
               {stats.activeMembers}
             </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Freelancer & Bisnis</span>
+            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Pengguna Terverifikasi</span>
           </div>
 
-          {/* Card 5: Rata-rata Proses */}
           <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#f59e0b', marginBottom: '8px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700 }}>RATA-RATA PROSES</span>
@@ -189,10 +200,9 @@ function Home() {
             <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--foreground)', marginTop: '4px' }}>
               {stats.avgProcess}
             </div>
-            <span style={{ fontSize: '10px', color: '#059669', fontWeight: 600 }}>Ke Bank & E-Wallet</span>
+            <span style={{ fontSize: '10px', color: '#059669', fontWeight: 600 }}>Pencairan Kilat</span>
           </div>
 
-          {/* Card 6: Clean & Legal Funds */}
           <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#059669', marginBottom: '8px' }}>
               <span style={{ fontSize: '11px', fontWeight: 700 }}>STATUS SALDO</span>
@@ -201,78 +211,18 @@ function Home() {
             <div style={{ fontSize: '15px', fontWeight: 800, color: 'var(--foreground)', marginTop: '6px' }}>
               {stats.cleanFunds}
             </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Bebas Masalah / Dispute</span>
+            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Bebas Masalah Legal</span>
           </div>
         </div>
       </section>
 
-      {/* ============================================================ */}
-      {/* BANNER KHUSUS: JASA PENCAIRAN (WD) LIMIT PERMANEN 180 HARI  */}
-      {/* ============================================================ */}
-      <section className="site-width" style={{ margin: '40px auto' }}>
-        <div
-          style={{
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%)',
-            color: '#ffffff',
-            borderRadius: '16px',
-            padding: '36px',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px',
-            alignItems: 'center',
-            boxShadow: '0 20px 50px rgba(15, 23, 42, 0.35)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-          }}
-        >
-          <div>
-            <span style={{ backgroundColor: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#fca5a5', fontSize: '10px', fontWeight: 800, padding: '5px 12px', borderRadius: '20px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              <Wrench size={13} /> SPESIALIS AKUN TERKUNCI (BENGKEL PAYPAL)
-            </span>
-            <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', margin: '14px 0 10px 0', lineHeight: 1.25 }}>
-              Jasa WD Saldo Akun PayPal Limit Permanen (180 Hari)
-            </h2>
-            <p style={{ fontSize: '13px', color: '#cbd5e1', lineHeight: 1.8, margin: 0 }}>
-              Punya saldo dollar yang tertahan di akun PayPal yang terkena penutupan permanen (180 hari)? Jangan dibiarkan hangus! Dana tersebut adalah hak legal Anda. Kami memberikan pendampingan penarikan resmi langsung masuk ke rekening bank lokal Anda (BCA, Mandiri, BRI, dll) dengan aman, transparan, dan bergaransi.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '20px', flexWrap: 'wrap', fontSize: '12px' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="#34d399" /> Tanpa Risiko Retur Bank
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="#34d399" /> Pendampingan Step-by-Step
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="#34d399" /> Fee Dibayar Setelah Cair
-              </span>
-            </div>
-          </div>
-
-          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '26px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.12)', textAlign: 'center' }}>
-            <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: 'rgba(56, 189, 248, 0.15)', display: 'grid', placeItems: 'center', margin: '0 auto 14px', color: '#38bdf8' }}>
-              <Lock size={26} />
-            </div>
-            <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>
-              Konsultasi Saldo Limit Sekarang
-            </h3>
-            <p style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.7, marginBottom: '20px' }}>
-              Kirimkan screenshot notifikasi email 180 hari Anda kepada admin kami untuk pengecekan status kelayakan secara gratis.
-            </p>
-            <Button asChild size="lg" style={{ width: '100%', backgroundColor: '#059669', hoverBackgroundColor: '#047857', color: '#ffffff', fontWeight: 800 }}>
-              <a href={whatsappUrl('Halo Admin Done Cogel, saya ingin konsultasi jasa WD pencairan saldo PayPal limit permanen 180 hari.')} target="_blank" rel="noopener noreferrer">
-                <MessageCircle size={16} /> Konsultasi WD Limit via WhatsApp
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* LAYANAN KAMI */}
+      {/* DAFTAR LAYANAN */}
       <ServicesSection />
 
-      {/* KALKULATOR TRANSAKSI */}
+      {/* KALKULATOR CONVERT */}
       <Calculator />
 
-      {/* CARA TRANSAKSI TIGA LANGKAH */}
+      {/* ALUR TRANSAKSI */}
       <section className="section site-width">
         <div className="section-centered centered-title">
           <span className="eyebrow">{tr("CARA TRANSAKSI")}</span>
@@ -280,9 +230,9 @@ function Home() {
         </div>
         <div className="steps-grid">
           {[
-            { t: 'Pilih layanan & nominal', d: 'Gunakan kalkulator atau pilih layanan yang sesuai dengan kebutuhan Anda.' },
-            { t: 'Konfirmasi dengan admin', d: 'Kirim detail pesanan melalui WhatsApp. Admin mengonfirmasi rate dan langkah berikutnya.' },
-            { t: 'Transaksi diproses', d: 'Setelah saldo diterima dan divalidasi, dana dikirim ke tujuan yang Anda pilih.' },
+            { t: 'Pilih layanan & nominal', d: 'Gunakan kalkulator atau pilih layanan convert/WD yang sesuai.' },
+            { t: 'Konfirmasi dengan admin', d: 'Kirim detail pesanan via WhatsApp. Admin mengonfirmasi rate terkini.' },
+            { t: 'Dana ditransfer instan', d: 'Setelah saldo tervalidasi, rupiah langsung masuk ke bank atau e-wallet Anda.' },
           ].map((s, i) => (
             <div key={tr(s.t)}>
               <span className="step-number">0{i + 1}</span>
@@ -293,10 +243,10 @@ function Home() {
         </div>
       </section>
 
-      {/* TELEGRAM TESTIMONI */}
+      {/* TESTIMONI */}
       <TelegramSection />
 
-      {/* FAQ PREVIEW */}
+      {/* FAQ */}
       <section className="section site-width faq-preview">
         <div className="section-heading">
           <div>
@@ -311,16 +261,12 @@ function Home() {
           </details>
         ))}
         <details>
-          <summary>{tr("Bagaimana cara membuat akun PayPal?")}</summary>
+          <summary>Apakah melayani jasa WD limit permanen 180 hari?</summary>
           <p>
-            {tr("Kami mendampingi pendaftaran dengan identitas asli, email, dan nomor telepon milik Anda. Verifikasi dilakukan oleh pemilik akun sesuai ketentuan PayPal.")}{' '}
-            <Link to="/pembuatan-akun" className="text-primary">{tr("Lihat jasa pembuatan akun PayPal.")}</Link>
-          </p>
-        </details>
-        <details>
-          <summary>Berapa lama proses pencairan saldo akun limit 180 hari?</summary>
-          <p>
-            Setelah masa 180 hari genap dan Anda menerima email notifikasi pelepasan dana dari PayPal, proses penarikan saldo ke bank lokal yang kami dampingi umumnya membutuhkan waktu 1 hingga 3 hari kerja mengikuti kliring transfer internasional bank di Indonesia.
+            Ya, kami memiliki layanan khusus pendampingan penarikan (WD) saldo akun PayPal yang terkena limitasi permanen 180 hari hingga tuntas cair ke rekening bank Anda.{' '}
+            <Link to="/bengkel" className="text-primary" style={{ fontWeight: 700 }}>
+              Lihat panduan lengkap Jasa WD Limit & Restore di sini.
+            </Link>
           </p>
         </details>
         <div className="faq-more">
@@ -330,7 +276,7 @@ function Home() {
         </div>
       </section>
 
-      {/* BANNER JASA PEMBUATAN AKUN */}
+      {/* BANNER BAWAH */}
       <div className="new-service-banner">
         <div className="site-width new-service-inner">
           <span>
@@ -344,4 +290,4 @@ function Home() {
       </div>
     </>
   );
-                }
+}
