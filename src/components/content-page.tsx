@@ -7,7 +7,6 @@ import {
   Clock,
   Search,
   ShieldCheck,
-  Tag,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactLink, PageHeading } from '@/components/site';
@@ -17,40 +16,6 @@ type Item = {
   d?: string;
   full?: string;
 };
-
-// Pemetaan 7 Foto Pilihan Anda ke Judul Artikel yang Pas
-const FOTO_ARTIKEL: Record<string, string> = {
-  'Cara Menghindari Limit Paypal': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
-  'Cara Transfer Saldo PayPal ke Bank Lokal Tanpa Gagal': '/images/gambar-2.jpg', // HP Pay Now
-  'Mengenal Perbedaan Saldo G&S dan F&F': '/images/gambar-7.jpg', // Logo PayPal Resmi
-  'Tips Menang Dispute Sengketa Dana': '/images/gambar-3.jpg', // Dashboard Grafik Dispute & Refund
-  'Verifikasi PayPal Tanpa Kartu Kredit Fisik': '/images/gambar-5.jpg', // Ikon 3D Silver
-  'Mengapa Saldo Anda Tertahan (Hold) 21 Hari?': '/images/gambar-4.jpg', // Kapsul $ PayPal
-  'Update Rate Convert Done Cogel Terbaru': '/images/gambar-3.jpg', // Dashboard Finansial
-  'Bahaya Menggunakan VPN Saat Akses PayPal': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
-  'Cara Menarik Saldo Paypal Limit 180 Hari': '/images/gambar-7.jpg', // Logo PayPal Resmi
-  'Perbedaan Akun Paypal Personal Dan Bisnis': '/images/gambar-1.jpg', // Logo 3D iPad
-  'Aktivasi 2FA: Benteng Saldo Anda': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
-  'Tutorial Bayar Langganan Canva Pro & Netflix': '/images/gambar-2.jpg', // HP Pay Now
-  'Cara Ganti Nama Akun PayPal': '/images/gambar-1.jpg', // Logo 3D iPad
-  'Strategi PayPal untuk Jualan Produk Digital': '/images/gambar-3.jpg', // Dashboard Finansial
-  'Refund Policy: Hak Anda Sebagai Pengguna': '/images/gambar-3.jpg', // Dashboard Grafik Refund
-  'Mengenal Kode SWIFT Bank Nasional': '/images/gambar-2.jpg', // HP Pay Now Transfer
-  'Cara Mengamankan Akun PayPal dari Hacker': '/images/gambar-6.jpg', // Tameng Gembok Keamanan
-  'Pentingnya Menjaga Reputasi & Trust Score Akun': '/images/gambar-5.jpg', // Ikon 3D Silver
-  'Perbedaan Akun Personal, Premier, dan Business': '/images/gambar-1.jpg', // Logo 3D iPad
-  'Cara Mencairkan Saldo Paypal Receh': '/images/gambar-4.jpg', // Kapsul $ PayPal
-};
-
-const DEFAULT_FALLBACK_IMAGES = [
-  '/images/gambar-1.jpg',
-  '/images/gambar-2.jpg',
-  '/images/gambar-3.jpg',
-  '/images/gambar-4.jpg',
-  '/images/gambar-5.jpg',
-  '/images/gambar-6.jpg',
-  '/images/gambar-7.jpg',
-];
 
 export function ContentPage({
   title,
@@ -103,9 +68,9 @@ export function ContentPage({
 
       <div className="content-grid">
         {filtered.map((item, idx) => {
-          // Pilih gambar yang cocok sesuai judul artikel
-          const imageSrc =
-            FOTO_ARTIKEL[item.t] || DEFAULT_FALLBACK_IMAGES[idx % DEFAULT_FALLBACK_IMAGES.length];
+          // Otomatis mengambil gambar-1.jpg sampai gambar-7.jpg secara bergantian
+          const nomorFoto = (idx % 7) + 1;
+          const imageSrc = `/gambar-${nomorFoto}.jpg`;
 
           return (
             <article
@@ -131,11 +96,6 @@ export function ContentPage({
                       height: '100%',
                       objectFit: 'cover',
                       transition: 'transform 0.3s ease',
-                    }}
-                    onError={(e) => {
-                      // Fallback ke banner cadangan jika file belum diunggah
-                      (e.target as HTMLImageElement).src =
-                        'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80';
                     }}
                   />
                   <span
@@ -209,7 +169,7 @@ export function ContentPage({
         <p className="subtle-note">{tr('Tidak ada artikel yang sesuai dengan pencarian Anda.')}</p>
       )}
 
-      {/* Modal Popup Saat Artikel Diklik (Menampilkan Foto Pilihan & Isi Rinci) */}
+      {/* Modal Popup Saat Artikel Diklik */}
       {selectedItem && (
         <div className="modal-backdrop" onClick={() => setSelectedItem(null)}>
           <article
@@ -220,7 +180,6 @@ export function ContentPage({
             style={{ maxWidth: '800px', padding: 0, overflow: 'hidden' }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header Gambar di Dalam Modal */}
             <div style={{ width: '100%', height: '240px', position: 'relative' }}>
               <img
                 src={selectedItem.img}
@@ -264,7 +223,6 @@ export function ContentPage({
                 <p style={{ whiteSpace: 'pre-line' }}>{tr(selectedItem.item.full ?? selectedItem.item.d ?? '')}</p>
               </div>
 
-              {/* Box Call To Action WhatsApp */}
               <div
                 style={{
                   marginTop: '28px',
