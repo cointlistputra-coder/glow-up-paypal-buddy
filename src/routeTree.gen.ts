@@ -24,6 +24,8 @@ import { Route as PembuatanAkunRouteImport } from './routes/pembuatan-akun'
 import { Route as TentangRouteImport } from './routes/tentang'
 import { Route as TutorialRouteImport } from './routes/tutorial'
 import { Route as UlasanRouteImport } from './routes/ulasan'
+import { Route as DrafIndexRouteImport } from './routes/draf.index'
+import { Route as DrafSlugRouteImport } from './routes/draf.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +102,16 @@ const UlasanRoute = UlasanRouteImport.update({
   path: '/ulasan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DrafIndexRoute = DrafIndexRouteImport.update({
+  id: '/draf/',
+  path: '/draf/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrafSlugRoute = DrafSlugRouteImport.update({
+  id: '/draf/$slug',
+  path: '/draf/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +129,8 @@ export interface FileRoutesByFullPath {
   '/tentang': typeof TentangRoute
   '/tutorial': typeof TutorialRoute
   '/ulasan': typeof UlasanRoute
+  '/draf/$slug': typeof DrafSlugRoute
+  '/draf/': typeof DrafIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +148,8 @@ export interface FileRoutesByTo {
   '/tentang': typeof TentangRoute
   '/tutorial': typeof TutorialRoute
   '/ulasan': typeof UlasanRoute
+  '/draf/$slug': typeof DrafSlugRoute
+  '/draf': typeof DrafIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +168,8 @@ export interface FileRoutesById {
   '/tentang': typeof TentangRoute
   '/tutorial': typeof TutorialRoute
   '/ulasan': typeof UlasanRoute
+  '/draf/$slug': typeof DrafSlugRoute
+  '/draf/': typeof DrafIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +189,8 @@ export interface FileRouteTypes {
     | '/tentang'
     | '/tutorial'
     | '/ulasan'
+    | '/draf/$slug'
+    | '/draf/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +208,8 @@ export interface FileRouteTypes {
     | '/tentang'
     | '/tutorial'
     | '/ulasan'
+    | '/draf/$slug'
+    | '/draf'
   id:
     | '__root__'
     | '/'
@@ -205,6 +227,8 @@ export interface FileRouteTypes {
     | '/tentang'
     | '/tutorial'
     | '/ulasan'
+    | '/draf/$slug'
+    | '/draf/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +247,8 @@ export interface RootRouteChildren {
   TentangRoute: typeof TentangRoute
   TutorialRoute: typeof TutorialRoute
   UlasanRoute: typeof UlasanRoute
+  DrafSlugRoute: typeof DrafSlugRoute
+  DrafIndexRoute: typeof DrafIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -332,6 +358,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UlasanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/draf/': {
+      id: '/draf/'
+      path: '/draf'
+      fullPath: '/draf/'
+      preLoaderRoute: typeof DrafIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/draf/$slug': {
+      id: '/draf/$slug'
+      path: '/draf/$slug'
+      fullPath: '/draf/$slug'
+      preLoaderRoute: typeof DrafSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -351,6 +391,8 @@ const rootRouteChildren: RootRouteChildren = {
   TentangRoute: TentangRoute,
   TutorialRoute: TutorialRoute,
   UlasanRoute: UlasanRoute,
+  DrafSlugRoute: DrafSlugRoute,
+  DrafIndexRoute: DrafIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
