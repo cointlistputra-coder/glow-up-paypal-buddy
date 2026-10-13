@@ -1,6 +1,5 @@
 import { usePreferences } from '@/components/preferences';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useState, useEffect } from 'react';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,11 +7,6 @@ import {
   Zap,
   Send,
   UserRoundPlus,
-  DollarSign,
-  Activity,
-  Users,
-  CheckCircle2,
-  Clock,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ServicesSection, TelegramSection } from '@/components/site';
@@ -54,26 +48,9 @@ export const Route = createFileRoute('/')({
 function Home() {
   const { tr } = usePreferences();
 
-  // Data Statistik Live yang Terhubung ke Admin
-  const [stats, setStats] = useState({
-    stockAvailable: '5.240',
-    saldoSold: '168.450',
-    successTx: '14.800+',
-    activeMembers: '6.200+',
-    avgProcess: '5–15 Menit',
-    cleanFunds: '100% Legal & Clean',
-  });
-
-  useEffect(() => {
-    try {
-      const savedStats = localStorage.getItem('tc_site_stats');
-      if (savedStats) setStats(JSON.parse(savedStats));
-    } catch {}
-  }, []);
-
   return (
     <>
-      {/* HERO SECTION KAYA KATA KUNCI SEO */}
+      {/* HERO SECTION */}
       <section className="home-hero">
         <img
           className="hero-image"
@@ -137,92 +114,13 @@ function Home() {
         </div>
       </div>
 
-      {/* WIDGET LIVE STOCK & DATA FINANSIAL HARI INI */}
-      <section className="site-width" style={{ marginTop: '40px', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', backgroundColor: 'rgba(5, 150, 105, 0.12)', color: '#059669', padding: '6px 14px', borderRadius: '9999px', fontSize: '11px', fontWeight: 800 }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#059669', display: 'inline-block', animation: 'pulse 1.5s infinite' }} />
-            LIVE STOCK & DATA FINANSIAL HARI INI
-          </div>
-          <span style={{ fontSize: '11px', color: 'var(--muted-foreground)' }}>Update real-time sistem</span>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '14px' }}>
-          <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#059669', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700 }}>STOCK TERSEDIA</span>
-              <DollarSign size={18} />
-            </div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
-              ${stats.stockAvailable} <small style={{ fontSize: '11px', color: 'var(--muted-foreground)' }}>USD</small>
-            </div>
-            <span style={{ fontSize: '10px', color: '#059669', fontWeight: 600 }}>● Ready Kirim Instan</span>
-          </div>
-
-          <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'var(--primary)', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700 }}>SALDO TERJUAL</span>
-              <Activity size={18} />
-            </div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
-              ${stats.saldoSold} <small style={{ fontSize: '11px', color: 'var(--muted-foreground)' }}>USD</small>
-            </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Total Terakumulasi</span>
-          </div>
-
-          <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#0284c7', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700 }}>TRANSAKSI SUKSES</span>
-              <CheckCircle2 size={18} />
-            </div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
-              {stats.successTx}
-            </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Convert & Jasa WD</span>
-          </div>
-
-          <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#8b5cf6', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700 }}>MEMBER AKTIF</span>
-              <Users size={18} />
-            </div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: 'var(--foreground)' }}>
-              {stats.activeMembers}
-            </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Pengguna Terverifikasi</span>
-          </div>
-
-          <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#f59e0b', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700 }}>RATA-RATA PROSES</span>
-              <Clock size={18} />
-            </div>
-            <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--foreground)', marginTop: '4px' }}>
-              {stats.avgProcess}
-            </div>
-            <span style={{ fontSize: '10px', color: '#059669', fontWeight: 600 }}>Pencairan Kilat</span>
-          </div>
-
-          <div style={{ padding: '18px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)', boxShadow: 'var(--shadow)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#059669', marginBottom: '8px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 700 }}>STATUS SALDO</span>
-              <ShieldCheck size={18} />
-            </div>
-            <div style={{ fontSize: '15px', fontWeight: 800, color: 'var(--foreground)', marginTop: '6px' }}>
-              {stats.cleanFunds}
-            </div>
-            <span style={{ fontSize: '10px', color: 'var(--muted-foreground)' }}>Bebas Masalah Legal</span>
-          </div>
-        </div>
-      </section>
-
-      {/* DAFTAR LAYANAN */}
+      {/* DAFTAR LAYANAN KAMI */}
       <ServicesSection />
 
-      {/* KALKULATOR CONVERT */}
+      {/* KALKULATOR TRANSAKSI */}
       <Calculator />
 
-      {/* ALUR TRANSAKSI */}
+      {/* ALUR TRANSAKSI TIGA LANGKAH */}
       <section className="section site-width">
         <div className="section-centered centered-title">
           <span className="eyebrow">{tr("CARA TRANSAKSI")}</span>
@@ -243,7 +141,7 @@ function Home() {
         </div>
       </section>
 
-      {/* TESTIMONI */}
+      {/* TESTIMONI TELEGRAM */}
       <TelegramSection />
 
       {/* FAQ */}
@@ -276,7 +174,7 @@ function Home() {
         </div>
       </section>
 
-      {/* BANNER BAWAH */}
+      {/* BANNER BAWAH PEMBUATAN AKUN */}
       <div className="new-service-banner">
         <div className="site-width new-service-inner">
           <span>
