@@ -1537,28 +1537,52 @@ details p {
   }
 }
 
+
 /* ============================================================ */
-/* MODE GELAP SEMPURNA (SEMUA TEKS TERANG & TERBACA JELAS)      */
+/* PERBAIKAN WARNA TOTAL (KONTRAS TINGGI DI SEMUA MODE)         */
 /* ============================================================ */
-html.dark {
-  --background: #0b0f19 !important;
-  --foreground: #f8fafc !important;
-  --card: #111827 !important;
-  --card-foreground: #f8fafc !important;
-  --muted: #1e293b !important;
-  --muted-foreground: #94a3b8 !important;
-  --accent: #1e293b !important;
-  --border: #1f2937 !important;
-  --hero-bg: #0b0f19 !important;
-  --footer-bg: #030712 !important;
+
+/* MODE TERANG (DEFAULT): SEMUA TEKS HITAM PEKAT & TERANG */
+h1, h2, h3, h4, strong {
+  color: #0f172a !important;
 }
 
+.hero-copy h1 {
+  color: #0f172a !important;
+}
+
+.desktop-nav a,
+.desktop-nav button {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.hero-copy > p,
+.section-heading p,
+.service-item p,
+.steps-grid p,
+p {
+  color: #334155 !important;
+}
+
+/* MODE GELAP: SEMUA TEKS PUTIH BERSIH & JELAS */
 html.dark, html.dark body {
   background-color: #0b0f19 !important;
   color: #f8fafc !important;
 }
 
-/* Judul, Header, dan Label Tebal */
+html.dark .site-header {
+  background-color: #0b0f19 !important;
+  border-color: #1e293b !important;
+}
+
+html.dark .desktop-nav a,
+html.dark .desktop-nav button,
+html.dark .mobile-nav a {
+  color: #f8fafc !important;
+}
+
+html.dark .hero-copy h1,
 html.dark h1,
 html.dark h2,
 html.dark h3,
@@ -1567,35 +1591,35 @@ html.dark strong,
 html.dark label,
 html.dark summary,
 html.dark dt,
-html.dark dd,
-html.dark .rates strong,
-html.dark .brand span {
-  color: #f8fafc !important;
+html.dark dd {
+  color: #ffffff !important;
 }
 
-/* Paragraf dan Teks Keterangan */
+/* Latar Belakang Teks Hero saat Mode Gelap agar Kontras */
+html.dark .hero-copy {
+  background: rgba(11, 15, 25, 0.75);
+  padding: 30px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+}
+
 html.dark p,
 html.dark .hero-copy > p,
-html.dark .calculator-intro > p,
 html.dark .service-item p,
 html.dark .reading p,
 html.dark .account-copy p,
 html.dark details p,
 html.dark .steps-grid p,
-html.dark .subtle-note,
-html.dark .rates > span,
-html.dark .calc-result small,
 html.dark small {
   color: #94a3b8 !important;
 }
 
-/* Kartu, Kotak, dan Popup */
-html.dark .site-header,
 html.dark .calculator,
 html.dark .content-item,
 html.dark .order-modal,
 html.dark .telegram-profile,
-html.dark .account-aside {
+html.dark .account-aside,
+html.dark .dropdown-list {
   background-color: #111827 !important;
   border-color: #1f2937 !important;
 }
@@ -1606,26 +1630,10 @@ html.dark .site-footer {
   border-color: #1f2937 !important;
 }
 
-/* Form Input & Select */
 html.dark input,
 html.dark select,
 html.dark textarea {
   background-color: #1f2937 !important;
-  color: #f8fafc !important;
+  color: #ffffff !important;
   border-color: #374151 !important;
-}
-
-html.dark input::placeholder,
-html.dark textarea::placeholder {
-  color: #64748b !important;
-}
-
-/* Garis Border Pemisah */
-html.dark .payment-strip,
-html.dark details,
-html.dark .order-modal dl div,
-html.dark .rates > span + span,
-html.dark .footer-bottom,
-html.dark .new-service-banner {
-  border-color: #1f2937 !important;
 }
