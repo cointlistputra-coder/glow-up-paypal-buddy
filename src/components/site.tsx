@@ -16,6 +16,9 @@ import {
   Wrench,
   Mail,
   Clock,
+  Star,
+  Newspaper,
+  Search,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TELEGRAM_URL, whatsappUrl } from '@/lib/paypal';
@@ -40,9 +43,10 @@ export function SiteHeader() {
           <span>done<span className="text-primary">cogel</span><small>PAYPAL & DIGITAL PAYMENT</small></span>
         </Link>
         
-        {/* Navigasi Desktop */}
+        {/* Navigasi Komputer / Laptop */}
         <nav className="desktop-nav" aria-label={tr("Navigasi utama")}>
           <Link to="/" activeProps={{ className: 'nav-active' }} activeOptions={{exact:true}}>{tr("Beranda")}</Link>
+          
           <div className="nav-dropdown">
             <Button variant="ghost" onClick={() => setServiceOpen(!serviceOpen)} aria-expanded={serviceOpen}>
               {tr("Layanan")} <ChevronDown size={14}/>
@@ -53,11 +57,12 @@ export function SiteHeader() {
               </div>
             )}
           </div>
-          <Link to="/lacak">{tr("Lacak Transaksi")}</Link>
-          <Link to="/blog">{tr("Blog Edukasi")}</Link>
+
+          <Link to="/lacak">{tr("Lacak Pesanan")}</Link>
+          <Link to="/ulasan">{tr("Ulasan ⭐")}</Link>
+          <Link to="/berita">{tr("Berita Harian")}</Link>
+          <Link to="/blog">{tr("Blog")}</Link>
           <Link to="/panduan">{tr("Panduan")}</Link>
-          <Link to="/tentang">{tr("Tentang Kami")}</Link>
-          <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">{tr("Testimoni")} <ArrowUpRight size={13}/></a>
         </nav>
 
         {/* Kontrol Bahasa dan Mode Gelap */}
@@ -69,21 +74,30 @@ export function SiteHeader() {
           </a>
         </Button>
 
+        {/* Tombol Menu HP */}
         <Button variant="ghost" size="icon" className="mobile-menu-toggle" aria-label={open ? tr("Tutup menu") : tr("Buka menu")} onClick={() => setOpen(!open)}>
           {open ? <X/> : <Menu/>}
         </Button>
       </div>
 
-      {/* Navigasi Menu HP (Mobile) */}
+      {/* Navigasi Layar HP (Mobile) Lengkap dengan Semua Fitur */}
       {open && (
         <nav className="mobile-nav" aria-label={tr("Navigasi seluler")}>
           <Link to="/" onClick={() => setOpen(false)}>{tr("Beranda")}</Link>
-          <Link to="/lacak" onClick={() => setOpen(false)} style={{ color: 'var(--primary)', fontWeight: 700 }}>🔍 {tr("Lacak Transaksi")}</Link>
-          {services.slice(1).map(s => <Link key={s.title} to={s.to} onClick={() => setOpen(false)}>{s.title}</Link>)}
+          <Link to="/lacak" onClick={() => setOpen(false)} style={{ color: 'var(--primary)', fontWeight: 800 }}>
+            <Search size={15}/> {tr("Lacak Transaksi")}
+          </Link>
+          <Link to="/ulasan" onClick={() => setOpen(false)} style={{ color: '#f59e0b', fontWeight: 800 }}>
+            <Star size={15} fill="#f59e0b"/> {tr("Ulasan & Rating Pelanggan")}
+          </Link>
+          <Link to="/berita" onClick={() => setOpen(false)} style={{ fontWeight: 800 }}>
+            <Newspaper size={15}/> {tr("Berita & Info PayPal Hari Ini")}
+          </Link>
           <Link to="/blog" onClick={() => setOpen(false)}>{tr("Blog Edukasi")}</Link>
+          {services.map(s => <Link key={s.title} to={s.to} onClick={() => setOpen(false)}>{s.title}</Link>)}
           <Link to="/panduan" onClick={() => setOpen(false)}>{tr("Panduan")}</Link>
           <Link to="/tentang" onClick={() => setOpen(false)}>{tr("Tentang Kami")}</Link>
-          <Link to="/faq" onClick={() => setOpen(false)}>FAQ</Link>
+          <Link to="/admin" onClick={() => setOpen(false)} style={{ color: 'var(--muted-foreground)' }}>🔐 Panel Admin</Link>
           <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">{tr("Testimoni Telegram")} <Send size={15}/></a>
         </nav>
       )}
@@ -161,18 +175,19 @@ export function SiteFooter() {
           </div>
         </div>
         <div>
-          <h4>{tr("Layanan")}</h4>
+          <h4>{tr("Fitur & Layanan")}</h4>
+          <Link to="/lacak">{tr("Lacak Transaksi")}</Link>
+          <Link to="/ulasan">{tr("Ulasan Pelanggan")}</Link>
+          <Link to="/berita">{tr("Berita Harian")}</Link>
           {services.map(s => <Link key={s.title} to={s.to}>{s.title}</Link>)}
         </div>
         <div>
           <h4>{tr("Informasi")}</h4>
-          <Link to="/lacak">{tr("Lacak Transaksi")}</Link>
           <Link to="/tentang">{tr("Tentang Kami")}</Link>
           <Link to="/panduan">{tr("Master Guide")}</Link>
           <Link to="/blog">{tr("Blog Edukasi")}</Link>
           <Link to="/faq">{tr("FAQ & Ketentuan")}</Link>
-          <Link to="/lokasi">{tr("Lokasi & Kontak")}</Link>
-          <Link to="/lapor">{tr("Keluhan Pelanggan")}</Link>
+          <Link to="/admin">{tr("Panel Admin")}</Link>
         </div>
         <div>
           <h4>{tr("Jam Operasional")}</h4>
