@@ -1,6 +1,6 @@
 import { usePreferences } from '@/components/preferences';
 import { createFileRoute } from '@tanstack/react-router';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Search,
   CheckCircle2,
@@ -17,60 +17,49 @@ import { Button } from '@/components/ui/button';
 import { PageHeading } from '@/components/site';
 import { pageMetadata } from '@/lib/metadata';
 import { whatsappUrl } from '@/lib/paypal';
+import { fetchTransactionById, type DbTransaction } from '@/lib/supabase';
 
 export const Route = createFileRoute('/lacak')({
   head: () =>
     pageMetadata(
-      'Lacak Transaksi PayPal',
-      'Cek status transaksi convert saldo, jasa bayar, dan pencairan dana PayPal Anda secara real-time.'
+      'Lacak Transaksi PayPal Online',
+      'Cek status transaksi convert saldo dan pencairan PayPal Anda secara real-time dari database online.'
     ),
   component: LacakPage,
 });
 
-type Transaction = {
-  id: string;
-  customerName: string;
-  whatsapp: string;
-  service: string;
-  amountUsd: number;
-  totalIdr: string;
-  targetAccount: string;
-  status: 'Menunggu Saldo' | 'Validasi Mutasi' | 'Selesai' | 'Dibatalkan';
-  createdAt: string;
-};
-
 function LacakPage() {
   const { tr } = usePreferences();
   const [orderId, setOrderId] = useState('');
-  const [searchedData, setSearchedData] = useState<Transaction | null>(null);
+  const [searchedData, setSearchedData] = useState<DbTransaction | null>(null);
   const [notFound, setNotFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = (e: React.FormEvent) => {
+  // MENCARI DATA LANGSUNG KE CLOUD SUPABASE
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     const query = orderId.trim().toUpperCase();
     if (!query) return;
 
-    try {
-      const saved: Transaction[] = JSON.parse(localStorage.getItem('tc_all_transactions') || '[]');
-      const found = saved.find((t) => t.id.toUpperCase() === query);
-      if (found) {
-        setSearchedData(found);
-        setNotFound(false);
-      } else {
-        setSearchedData(null);
-        setNotFound(true);
-      }
-    } catch {
+    setIsLoading(true);
+    setNotFound(false);
+    setSearchedData(null);
+
+    const result = await fetchTransactionById(query);
+    if (result) {
+      setSearchedData(result);
+    } else {
       setNotFound(true);
     }
+    setIsLoading(false);
   };
 
   return (
     <main className="site-width section" style={{ minHeight: '80vh' }}>
       <PageHeading
-        eyebrow={tr('STATUS TRANSAKSI')}
+        eyebrow={tr('STATUS TRANSAKSI REAL-TIME')}
         title={tr('Lacak Pesanan Anda')}
-        description={tr('Masukkan ID transaksi yang Anda dapatkan saat mengajukan pesanan via kalkulator atau admin.')}
+        description={tr('Masukkan ID transaksi untuk memeriksa proses validasi dan transfer saldo PayPal Anda secara langsung dari server.')}
       />
 
       <div style={{ maxWidth: '600px', margin: '0 auto 40px auto' }}>
@@ -97,8 +86,8 @@ function LacakPage() {
               style={{ width: '100%', border: 'none', paddingLeft: '38px', fontSize: '14px', fontWeight: 600, outline: 'none', backgroundColor: 'transparent' }}
             />
           </div>
-          <Button type="submit" size="lg" style={{ borderRadius: '8px', fontWeight: 700 }}>
-            <Search size={15} /> {tr('Lacak')}
+          <Button type="submit" size="lg" disabled={isLoading} style={{ borderRadius: '8px', fontWeight: 700 }}>
+            <Search size={15} /> {isLoading ? 'Mencari...' : tr('Lacak')}
           </Button>
         </form>
       </div>
@@ -106,9 +95,9 @@ function LacakPage() {
       {notFound && (
         <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', padding: '30px', backgroundColor: 'var(--card)', borderRadius: '12px', border: '1px solid var(--border)' }}>
           <AlertCircle size={32} style={{ color: '#ef4444', margin: '0 auto 10px' }} />
-          <h3 style={{ fontSize: '16px', fontWeight: 700 }}>ID Transaksi Tidak Ditemukan</h3>
+          <h3 style={{ fontSize: '16px', fontWeight: 700 }}>ID Transaksi Tidak Ditemukan di Server</h3>
           <p style={{ fontSize: '12px', color: 'var(--muted-foreground)', marginTop: '4px' }}>
-            Pastikan Anda memasukkan kode ID dengan benar atau hubungi admin jika baru saja mengajukan pesanan.
+            Pastikan kode ID yang Anda masukkan tepat atau hubungi admin via WhatsApp jika pesanan baru saja diajukan.
           </p>
         </div>
       )}
@@ -119,7 +108,6 @@ function LacakPage() {
             <div>
               <span style={{ fontSize: '11px', color: 'var(--muted-foreground)', fontWeight: 600 }}>ID TRANSAKSI RESMI</span>
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--primary)', margin: '4px 0 0 0' }}>{searchedData.id}</h3>
-              <small style={{ color: 'var(--muted-foreground)' }}>{searchedData.createdAt}</small>
             </div>
             <div
               style={{
@@ -151,8 +139,8 @@ function LacakPage() {
 
           <div style={{ margin: '20px 0', padding: '16px', backgroundColor: 'var(--accent)', borderRadius: '8px', fontSize: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px' }}>
             <div>Layanan: <strong>{searchedData.service}</strong></div>
-            <div>Nominal: <strong>${searchedData.amountUsd} USD</strong> (<strong>{searchedData.totalIdr}</strong>)</div>
-            <div>Tujuan Pencairan: <strong>{searchedData.targetAccount}</strong></div>
+            <div>Nominal: <strong>${searchedData.amount_usd} USD</strong> (<strong>{searchedData.total_idr}</strong>)</div>
+            <div>Tujuan Pencairan: <strong>{searchedData.target_account}</strong></div>
           </div>
 
           <div style={{ margin: '30px 0' }}>
@@ -163,7 +151,7 @@ function LacakPage() {
                   <div style={{ width: '28px', height: '28px', borderRadius: '50%', backgroundColor: '#059669', color: '#fff', display: 'grid', placeItems: 'center' }}><CheckCircle2 size={16} /></div>
                   <div style={{ width: '2px', height: '35px', backgroundColor: '#059669', marginTop: '4px' }} />
                 </div>
-                <div><strong style={{ fontSize: '13px' }}>Pesanan Terdaftar di Sistem</strong><p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>ID resmi terkunci dan tersimpan di database.</p></div>
+                <div><strong style={{ fontSize: '13px' }}>Pesanan Terdaftar di Server Cloud</strong><p style={{ fontSize: '11px', color: 'var(--muted-foreground)', margin: '2px 0 0 0' }}>ID resmi terkunci dan tersimpan di database online.</p></div>
               </div>
 
               <div style={{ display: 'flex', gap: '15px' }}>
