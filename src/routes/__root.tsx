@@ -23,7 +23,7 @@ function NotFoundComponent() {
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Halaman yang Anda cari tidak ditemukan.
+          Halaman yang Anda cari tidak ditemukan atau telah dipindahkan.
         </p>
         <div className="mt-6">
           <Link
@@ -52,7 +52,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
           Terjadi kendala saat memuat halaman
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Silakan coba muat ulang halaman.
+          Silakan muat ulang halaman atau kembali ke beranda.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -81,27 +81,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "TransferCepat — Jasa Convert Saldo PayPal & Pembayaran Online Terpercaya" },
+      {
+        title: "TransferCepat — Jasa Convert Saldo PayPal, Jasa WD Limit Permanen & Mencairkan PayPal",
+      },
       {
         name: "description",
         content:
-          "Jasa convert saldo PayPal ke DANA, BCA, OVO, Mandiri tercepat 5-15 menit. Layanan pembayaran marketplace internasional terpercaya sejak 2018.",
+          "Jasa convert saldo PayPal ke DANA, BCA, OVO, Mandiri, BRI tercepat 5-15 menit. Melayani jasa WD akun PayPal limit permanen 180 hari, mencairkan saldo, dan jasa bayar online terpercaya sejak 2018.",
       },
       {
         name: "keywords",
         content:
-          "convert paypal, jasa convert paypal, jual saldo paypal, paypal ke dana, paypal ke bca, jasa bayar paypal, transfercepat",
+          "convert, jasa convert paypal, jasa wd, jasa wd paypal, mencairkan paypal, cairkan saldo paypal, akun paypal limit permanen, cara menarik saldo paypal limit 180 hari, paypal ke dana, paypal ke bca, jual beli saldo paypal, jasa bayar paypal, transfercepat, done cogel",
       },
+      { name: "author", content: "TransferCepat by Done Cogel" },
       { property: "og:site_name", content: "TransferCepat" },
-      { property: "og:title", content: "TransferCepat — Solusi PayPal & Pembayaran Digital" },
+      {
+        property: "og:title",
+        content: "TransferCepat — Jasa Convert Saldo, Jasa WD & Mencairkan PayPal",
+      },
       {
         property: "og:description",
         content:
-          "Convert saldo PayPal ke bank & e-wallet Indonesia tanpa ribet. Proses kilat rate terbaik.",
+          "Convert saldo PayPal ke DANA & Bank Lokal, jasa WD limit 180 hari, dan jasa bayar terpercaya sejak 2018.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://transfercepat.com" },
-      { property: "og:image", content: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&q=80" },
+      {
+        property: "og:image",
+        content: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&q=80",
+      },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -120,10 +129,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // Schema.org Structured Data Resmi untuk Mesin Pencari Google
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "TransferCepat",
+    "alternateName": "Done Cogel",
+    "url": "https://transfercepat.com",
+    "logo": "https://transfercepat.com/favicon.svg",
+    "description":
+      "Penyedia layanan jasa convert saldo PayPal, jasa WD limit permanen 180 hari, mencairkan saldo PayPal ke bank lokal dan dompet digital terpercaya di Indonesia.",
+    "telephone": "+6288274325328",
+    "openingHours": "Mo-Su 00:00-24:00",
+    "priceRange": "$$",
+    "areaServed": "ID",
+    "paymentAccepted": "PayPal, Bank Transfer, DANA, GoPay, OVO",
+  };
+
   return (
     <html lang="id">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </head>
       <body>
         {children}
